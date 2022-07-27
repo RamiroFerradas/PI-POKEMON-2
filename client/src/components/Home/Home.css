@@ -1,0 +1,49 @@
+.cards {
+  background-color: red;
+  padding: 50px;
+}
+
+.contenedorCards {
+  float: left;
+  display: flex;
+  background-color: rgba(127, 126, 126, 0.424);
+
+  text-align: center;
+  width: 20rem;
+  margin-left: 30px;
+  margin-top: 27px;
+  justify-content: center;
+  border-radius: 80px 80px 80px 80px;
+  -moz-border-radius: 80px 80px 80px 80px;
+  -webkit-border-radius: 80px 80px 80px 80px;
+  border: 0px solid #000000;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  -webkit-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+}
+.contenedorCards:hover {
+  transition: 10ms;
+  float: left;
+  display: flex;
+  background-color: rgba(37, 37, 37, 0.424);
+  text-align: center;
+  width: 20rem;
+  margin-left: 30px;
+  margin-top: 27px;
+  justify-content: center;
+  border-radius: 80px 80px 80px 80px;
+  -moz-border-radius: 80px 80px 80px 80px;
+  -webkit-border-radius: 80px 80px 80px 80px;
+  border: 0px solid #000000;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  -webkit-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+}
+
+.header {
+  text-align: center;
+}
