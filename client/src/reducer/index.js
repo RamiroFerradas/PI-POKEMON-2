@@ -11,8 +11,6 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
-        // typesList,
-        // loading: false,
       };
     case "GET_TYPES":
       return {
@@ -20,17 +18,16 @@ export default function pokemonReducer(state = initialState, action) {
         typesList: action.payload,
       };
     case "FILTER_BY_CREATED":
-      // const allPokemons = state.allPokemons
       const createdFilter =
         action.payload === "created"
           ? state.allPokemons.filter((pokemon) => pokemon.createdInDb)
           : state.allPokemons.filter((pokemon) => !pokemon.createdInDb);
-      // console.log(createdFilter.type);
+
       return {
         ...state,
         pokemons: createdFilter,
-        // action.payload === "all" ? state.allPokemons : createdFilter,
       };
+
     case "FILTER_BY_TYPES":
       return {
         ...state,
@@ -38,18 +35,66 @@ export default function pokemonReducer(state = initialState, action) {
           if (action.payload === "all") {
             return state.allPokemons;
           } else {
+            // console.log(ele.type);
             if (ele.type.length === 1) {
-              return ele.type[0].includes(action.payload);
-            } else if (ele.type.length === 2) {
+              return ele.type[0] === action.payload;
+            }
+            if (ele.type.length === 2) {
               return (
-                ele.type[0].includes(action.payload) ||
-                ele.type[1].includes(action.payload)
+                ele.type[0]?.name === action.payload ||
+                ele.type[1]?.name === action.payload
               );
             } else {
-              return null;
+              console.log("soy el else");
+              return alert(`No hay pokémons de tipo ${action.payload}`);
             }
           }
         }),
+      };
+    case "ORDER_BY_NAME":
+      let arrayOrdenamiento =
+        action.payload === "asc"
+          ? state.pokemons.sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.pokemons.sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
+            });
+
+      return {
+        ...state,
+        pokemons: arrayOrdenamiento,
+      };
+
+    case "GET_NAME_POKEMONS":
+      if (action.payload.msj) {
+        let error = { error: "No se encontró el pokémon" };
+        return {
+          ...state,
+          pokemon: error,
+          page: 1,
+        };
+      }
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
+
+    case "POST_POKEMON":
+      return {
+        ...state,
       };
 
     default:

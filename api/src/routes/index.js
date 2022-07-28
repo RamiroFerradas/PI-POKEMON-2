@@ -32,6 +32,7 @@ router.get("/pokemons/:id", async (req, res) => {
 router.post("/pokemons", async (req, res) => {
   const { name, id, img, hp, attack, defense, weight, height, speed, type } =
     req.body;
+
   try {
     // name = name[0].toUpperCase() + name.slice(1);
     let createPokemon = await Pokemon.create({

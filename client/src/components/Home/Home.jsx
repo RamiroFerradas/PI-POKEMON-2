@@ -7,16 +7,23 @@ import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import Loading from "../Loading/Loading";
 import "../Home/Home.css";
-import { filterByCreated, filterByTypes } from "../../actions/index";
+import SearchBar from "../SearchBar/SearchBar";
+import {
+  filterByCreated,
+  filterByTypes,
+  orderByName,
+} from "../../actions/index";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.typesList);
   const allPokemons = useSelector((state) => state.pokemons);
+  const [order, setOrder] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
   const indiceUltimoPokemon = paginaActual * pokemonsPorPagina;
   const indicePrimerPokemon = indiceUltimoPokemon - pokemonsPorPagina;
+
   const pokemonsActuales = allPokemons.slice(
     indicePrimerPokemon,
     indiceUltimoPokemon
@@ -45,11 +52,18 @@ export default function Home() {
     dispatch(filterByTypes(e.target.value));
     setPaginaActual(() => 1);
   };
-  return allPokemons.length < 1 ? (
+
+  function handleSort(e) {
+    e.preventDefault(e);
+    dispatch(orderByName(e.target.value));
+    setPaginaActual(1);
+    setOrder(`Ordenado${e.target.value}`);
+  }
+  return pokemonsActuales.length < 1 ? (
     <Loading />
   ) : (
     <div className="header">
-      <Link to="/pokemons">CREAR POKEMON</Link>
+      <Link to="/agregar">CREAR POKEMON</Link>
       <h1>PI POKEMON</h1>
       <button
         onClick={(e) => {
@@ -73,10 +87,10 @@ export default function Home() {
         </div>
         <div>
           <label>Order: </label>
-          <select>
-            <option value="pokedex">pokedex</option>
-            <option value="ascending">a-z</option>
-            <option value="descending">z-a</option>
+          <select onChange={(e) => handleSort(e)}>
+            {/* <option value="pokedex">pokedex</option> */}
+            <option value="asc">a-z</option>
+            <option value="dsc">z-a</option>
           </select>
         </div>
         <div>
@@ -92,20 +106,27 @@ export default function Home() {
           allPokemons={allPokemons.length}
           paginado={paginado}
         />
-        {pokemonsActuales?.map((ele) => {
-          return (
-            <div className="contenedorCards" key={ele.id}>
-              <label>Tipo de pokemon: </label>
-              <Link to={"/pokemons/" + ele.id}>
-                <Card
-                  name={ele.name[0].toUpperCase() + ele.name.slice(1)}
-                  img={ele.img}
-                  type={ele.type.join(", ")}
-                />
-              </Link>
-            </div>
-          );
-        })}
+        <SearchBar />
+        <img src="" alt="" />
+
+        {pokemonsActuales.length < 1 ? (
+          <Loading />
+        ) : (
+          pokemonsActuales?.map((ele) => {
+            return (
+              <div className="contenedorCards" key={ele.id}>
+                {/* <h5>Tipo de pokemon: </h5> */}
+                <Link to={"/pokemons/" + ele.id}>
+                  <Card
+                    name={ele.name[0].toUpperCase() + ele.name.slice(1)}
+                    img={ele.img}
+                    type={ele.type ? ele.type.join(", ") : (ele.type = [10001])}
+                  />
+                </Link>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

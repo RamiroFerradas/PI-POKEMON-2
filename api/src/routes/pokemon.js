@@ -7,7 +7,7 @@ const router = Router();
 
 function crearPokemon(d) {
   return {
-    name: d.name[0].toUpperCase() + d.name.slice(1),
+    name: d.name,
     id: d.id,
     // img: d.sprites.other.dream_world.front_default,
     img: d.sprites.other.home.front_default,
@@ -83,7 +83,7 @@ async function getConcatenado(name) {
   const getApi = await getPokemon();
   const mapeo = getDb.map((ele) => {
     return {
-      name: ele.name[0].toUpperCase() + ele.name.slice(1),
+      name: ele.name,
       id: ele.id,
       img: ele.img,
       hp: ele.hp,
