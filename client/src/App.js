@@ -14,7 +14,7 @@ function App() {
     <>
       <Routes>
         <Route index element={<Landing />} />
-        <Route path="/pokemons" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/pokemons/:id" element={<PokemonDetail />} />
         <Route path="/agregar" element={<PokemonCreate />} />
         <Route path="/about" />

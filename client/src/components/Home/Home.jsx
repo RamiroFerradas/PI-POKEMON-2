@@ -13,6 +13,8 @@ import {
   filterByTypes,
   orderByName,
 } from "../../actions/index";
+import { useNavigate } from "react-router-dom";
+import Error404 from "../Error 404/Error404";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -23,7 +25,9 @@ export default function Home() {
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
   const indiceUltimoPokemon = paginaActual * pokemonsPorPagina;
   const indicePrimerPokemon = indiceUltimoPokemon - pokemonsPorPagina;
+  const loading = useSelector((state) => state.loading);
 
+  const navigate = useNavigate();
   const pokemonsActuales = allPokemons.slice(
     indicePrimerPokemon,
     indiceUltimoPokemon
@@ -59,9 +63,7 @@ export default function Home() {
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
   }
-  return pokemonsActuales.length < 1 ? (
-    <Loading />
-  ) : (
+  return (
     <div className="header">
       <Link to="/agregar">CREAR POKEMON</Link>
       <h1>PI POKEMON</h1>
@@ -107,34 +109,37 @@ export default function Home() {
           paginado={paginado}
         />
         <SearchBar />
-        <img src="" alt="" />
 
-        {pokemonsActuales.length < 1 ? (
-          <Loading />
+        {!loading ? (
+          pokemonsActuales ? (
+            pokemonsActuales.map((ele) => {
+              return (
+                <div className="contenedorCards" key={ele.id}>
+                  {/* <h5>Tipo de pokemon: </h5> */}
+                  <Link to={`/pokemons/${ele.id}`}>
+                    <Card
+                      name={ele.name}
+                      img={
+                        ele.img ? (
+                          ele.img
+                        ) : (
+                          <img
+                            src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
+                            alt="pokemon"
+                          />
+                        )
+                      }
+                      type={ele.type ? ele.type.join(", ") : <Error404 />}
+                    />
+                  </Link>
+                </div>
+              );
+            })
+          ) : (
+            <Error404 />
+          )
         ) : (
-          pokemonsActuales?.map((ele) => {
-            return (
-              <div className="contenedorCards" key={ele.id}>
-                {/* <h5>Tipo de pokemon: </h5> */}
-                <Link to={"/pokemons/" + ele.id}>
-                  <Card
-                    name={ele.name[0].toUpperCase() + ele.name.slice(1)}
-                    img={
-                      ele.img ? (
-                        ele.img
-                      ) : (
-                        <img
-                          src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
-                          alt="pokemon"
-                        />
-                      )
-                    }
-                    type={ele.type ? ele.type.join(", ") : (ele.type = 10001)}
-                  />
-                </Link>
-              </div>
-            );
-          })
+          <Loading />
         )}
       </div>
     </div>

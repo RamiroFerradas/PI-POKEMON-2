@@ -3,7 +3,7 @@ import Loading from "../Loading/Loading";
 import "./Card.css";
 
 export default function Card({ name, img, type }) {
-  return Card.length < 1 ? (
+  return !Card.length ? (
     <Loading />
   ) : (
     // <div>

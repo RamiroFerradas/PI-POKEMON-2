@@ -1,4 +1,5 @@
 import axios from "axios";
+import Loading from "../components/Loading/Loading";
 
 export default function getPokemons() {
   return async function (dispatch) {
@@ -14,6 +15,15 @@ export function getTypes() {
     var json = await axios("http://localhost:3001/types", {});
     return dispatch({
       type: "GET_TYPES",
+      payload: json.data,
+    });
+  };
+}
+export function deletePokemon(id) {
+  return async function (dispatch) {
+    const json = await axios.delete(`http://localhost:3001/pokemons/${id}`);
+    return dispatch({
+      type: "DELETE_POKEMON",
       payload: json.data,
     });
   };
@@ -44,6 +54,7 @@ export function getNamePokemons(name) {
   return async function (dispatch) {
     try {
       var json = await axios(`http://localhost:3001/pokemons?name=${name}`);
+      if (!json) return <Loading />;
       return dispatch({
         type: "GET_NAME_POKEMONS",
         payload: json.data,
@@ -74,5 +85,17 @@ export function getPokemonDetail(id) {
     } catch (error) {
       console.log("error", error);
     }
+  };
+}
+
+export function cleanCache() {
+  return {
+    type: "CLEAN_CACHE",
+  };
+}
+
+export function cleanCacheAll() {
+  return {
+    type: "CLEAN_CACHE_ALL",
   };
 }

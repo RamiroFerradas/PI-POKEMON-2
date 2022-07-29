@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getNamePokemons } from "../../actions";
+import Loading from "../Loading/Loading";
 import "./SearchBar.css";
 
 // import useHistory from "react-router-dom";
@@ -10,11 +11,11 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
+  const loading = useSelector((state) => state.loading);
 
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value.toLowerCase());
-    console.log(name);
   }
 
   function handleSubmit(e) {
@@ -30,11 +31,11 @@ export default function SearchBar() {
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Buscar Pokemon"
-          onChange={(e) => handleInputChange(e)}
+          onChange={handleInputChange}
           className="input"
           // disabled={!name}
         />

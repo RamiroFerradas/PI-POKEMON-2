@@ -9,7 +9,7 @@ function Landing() {
   return (
     <div className="contenedorInicio">
       <p className="clickParaEmpezar">¡Clickeá para comenzar!</p>
-      <Link to="/pokemons">
+      <Link to="/home">
         <img src={titulo} alt="titulo" className="tituloInicio" />
       </Link>
       {/* <img src={ash} alt="ash" className="ash" /> */}

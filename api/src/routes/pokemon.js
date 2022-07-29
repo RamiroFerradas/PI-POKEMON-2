@@ -7,7 +7,7 @@ const router = Router();
 
 function crearPokemon(d) {
   return {
-    name: d.name,
+    name: d.name[0].toUpperCase() + d.name.slice(1),
     id: d.id,
     // img: d.sprites.other.dream_world.front_default,
     img: d.sprites.other.home.front_default,
@@ -106,7 +106,7 @@ async function getConcatenado(name) {
     if (buscar.length > 0) {
       return buscar;
     }
-    return "No se encontro el pokemon";
+    return alert("No se encontro el pokemon");
   } else {
     return getFinal;
   }

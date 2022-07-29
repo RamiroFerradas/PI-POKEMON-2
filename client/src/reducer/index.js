@@ -3,6 +3,8 @@ const initialState = {
   allPokemons: [],
   typesList: [],
   detail: {},
+  page: 1,
+  loading: true,
 };
 
 export default function pokemonReducer(state = initialState, action) {
@@ -12,12 +14,14 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
+        loading: false,
         // detail: action.payload,
       };
     case "GET_TYPES":
       return {
         ...state,
         typesList: action.payload,
+        // loading: false,
       };
     case "FILTER_BY_CREATED":
       const createdFilter =
@@ -28,11 +32,13 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: createdFilter,
+        loading: false,
       };
 
     case "FILTER_BY_TYPES":
       return {
         ...state,
+
         pokemons: state.allPokemons.filter((ele) => {
           if (action.payload === "all") {
             return state.allPokemons;
@@ -52,6 +58,7 @@ export default function pokemonReducer(state = initialState, action) {
             }
           }
         }),
+        loading: false,
       };
     case "ORDER_BY_NAME":
       let arrayOrdenamiento =
@@ -87,6 +94,7 @@ export default function pokemonReducer(state = initialState, action) {
           ...state,
           pokemon: error,
           page: 1,
+          loading: false,
         };
       }
       return {
@@ -98,12 +106,36 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "DELETE_POKEMON":
+      return {
+        ...state,
+      };
     case "GET_POKEMONS_DETAILS":
-      console.log("soy reducer");
       return {
         ...state,
         detail: action.payload,
+        loading: false,
         // loading: false,
+      };
+
+    case "CLEAN_CACHE":
+      return {
+        ...state,
+        // allPokemons: [],
+        // pokemons: [],
+        detail: {},
+        page: 1,
+        loading: true,
+      };
+
+    case "CLEAN_CACHE_ALL":
+      return {
+        ...state,
+        pokemons: [],
+        allPokemons: [],
+        detail: {},
+        loading: true,
+        // page: 1,
       };
 
     default:
