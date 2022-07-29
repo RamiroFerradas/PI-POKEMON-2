@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNamePokemons } from "../../actions";
+import "./SearchBar.css";
 
 // import useHistory from "react-router-dom";
 
@@ -34,10 +35,12 @@ export default function SearchBar() {
           type="text"
           placeholder="Buscar Pokemon"
           onChange={(e) => handleInputChange(e)}
+          className="input"
+          // disabled={!name}
         />
-        <button disabled={!name} type="submit">
+        {/* <button disabled={!name} type="submit">
           Buscar
-        </button>
+        </button> */}
       </form>
     </div>
   );

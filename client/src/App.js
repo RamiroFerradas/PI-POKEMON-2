@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import React from "react";
 import { PokemonCreate } from "./components/Pokemon Create/PokemonCreate";
+import PokemonDetail from "./components/Pokememon Detail/PokemonDetail";
 
 //Componentes
 import Landing from "./components/Landing/Landing";
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/pokemons" element={<Home />} />
-        <Route path="/pokemons/:id" />
+        <Route path="/pokemons/:id" element={<PokemonDetail />} />
         <Route path="/agregar" element={<PokemonCreate />} />
         <Route path="/about" />
         <Route path="*" />

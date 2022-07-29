@@ -11,6 +11,7 @@ export function PokemonCreate() {
   const dispatch = useDispatch();
   const AllTypes = useSelector((state) => state.typesList);
   const navigate = useNavigate();
+  // const allPokemons = useSelector((state) => state.pokemons);
 
   useEffect(() => {
     dispatch(getTypes());
@@ -35,14 +36,18 @@ export function PokemonCreate() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    // console.log(input);
+    // setError(
+    //   validate({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
+    console.log(input);
   };
 
   const handlerFirstSelect = (e) => {
     console.log(input, "soy input");
-    if (input.type.length === 0) {
-      alert("Primero debes de escoger un primer tipo");
-    }
+
     if (input.type.length <= 1) {
       setInput({
         ...input,
@@ -107,6 +112,94 @@ export function PokemonCreate() {
     }, 1000);
   };
 
+  // const [error, setError] = useState({});
+
+  // function validate(input) {
+  //   let errors = {};
+  //   if (
+  //     allPokemons.find(
+  //       (pokemon) => pokemon.name.toUpperCase() === input.name.toUpperCase()
+  //     )
+  //   )
+  //     errors.name =
+  //       "Ya existe un pokemon con ese nombre, prueba con escoger otro";
+  //   if (!input.name)
+  //     errors.name = "Tu poke necesita un nombre, escoge el mejor";
+  //   if (/[1-9]/.test(input.name))
+  //     errors.name = "El nombre de tu poke no puede contener numeros";
+  //   if (/[\s]/.test(input.name))
+  //     errors.name = "El nombre de tu poke no puede contener espacios";
+  //   if (/[^\w\s]/.test(input.name))
+  //     errors.name =
+  //       "El nombre de tu poke no puede contener caracteres especiales";
+
+  //   if (input.hp < 1)
+  //     errors.hp = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.hp === "")
+  //     errors.hp = "No te olvides de colocar la vida de tu poke";
+  //   if (input.hp > 200) errors.hp = "La vida no puede ser superior a 200";
+
+  //   if (input.attack < 1)
+  //     errors.attack = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.attack === "")
+  //     errors.attack = "Coloca que tan poderoso es tu poke";
+  //   if (input.attack > 200)
+  //     errors.attack = "El ataque no puede ser superior a 200";
+
+  //   if (input.defense < 1)
+  //     errors.defense = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.defense === "")
+  //     errors.defense = "Coloca que tan resistente es tu poke";
+  //   if (input.defense > 200)
+  //     errors.defense = "La defensa no puede ser superior a 200";
+
+  //   if (input.speed < 1)
+  //     errors.speed = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.speed === "") errors.speed = "Coloca que tan rapido es tu poke";
+  //   if (input.speed > 200)
+  //     errors.speed = "La velocidad no puede ser superior a 200";
+
+  //   if (input.height < 1)
+  //     errors.height = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.height === "")
+  //     errors.height = "No te olvides colocar que tan grande es tu poke";
+  //   if (input.height > 200)
+  //     errors.height = "La tamanio no puede ser superior a 200";
+
+  //   if (input.weight < 1)
+  //     errors.weight = "Necesitas colocar un valor mayor o igual a 1";
+  //   if (input.weight === "")
+  //     errors.weight = "Cuentanos que tan pesado es tu poke";
+  //   if (input.weight > 200)
+  //     errors.weight = "El peso no puede ser superior a 200";
+
+  //   if (!/\.(jpg|png|gif)$/i.test(input.img))
+  //     errors.img = "La url que intentas colocar no es valida";
+  //   if (!input.img)
+  //     errors.img = "Se requiere una URL para la imagen de tu poke";
+  //   return errors;
+  // }
+  // const [disabledButton, setDisabledButton] = useState(true);
+
+  // useEffect(() => {
+  //   if (
+  //     input.name === "" ||
+  //     input.type.length < 1 ||
+  //     error.hasOwnProperty("name") ||
+  //     error.hasOwnProperty("img") ||
+  //     error.hasOwnProperty("hp") ||
+  //     error.hasOwnProperty("attack") ||
+  //     error.hasOwnProperty("defense") ||
+  //     error.hasOwnProperty("speed") ||
+  //     error.hasOwnProperty("height") ||
+  //     error.hasOwnProperty("weight")
+  //   ) {
+  //     setDisabledButton(true);
+  //   } else {
+  //     setDisabledButton(false);
+  //   }
+  // }, [error, input, setDisabledButton]);
+
   return (
     <div>
       <Link to="/pokemons">
@@ -118,7 +211,9 @@ export function PokemonCreate() {
           {/**PRIMERA COLUMNA */}
           <div>
             <div>
-              <label>Name:</label>
+              <label data-help="Debes ingresar el nombre de tu pokemon !">
+                Name:
+              </label>
               <input
                 required
                 type="text"
@@ -132,14 +227,19 @@ export function PokemonCreate() {
             </div>
             <div>
               <label>Hp:</label>
+              <span value={input.hp}></span>
+              {/* <span>{input}</span> */}
               <input
-                type="number"
+                type="range"
+                min="0"
+                max="100"
                 name="hp"
                 value={input.hp}
                 placeholder="Ejem: 12"
                 onChange={(e) => handlerChange(e)}
                 autoComplete="off"
               />
+              <span>100</span>
             </div>
             <div>
               <label>Attack:</label>
@@ -253,7 +353,7 @@ export function PokemonCreate() {
           </div>
           <button
           // disabled={disabledButton}
-          // onClick={(e) => handlerCreatePokemon(e)}
+          // className={style.buttonCreatePokemon}
           >
             CREAR POKEMON
           </button>

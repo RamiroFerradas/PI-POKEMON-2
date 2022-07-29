@@ -1,5 +1,5 @@
 .cards {
-  background-color: red;
+  /* background-color: red; */
   padding: 50px;
 }
 
@@ -23,6 +23,7 @@
   -moz-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
 }
+
 .contenedorCards:hover {
   transition: 10ms;
   float: left;

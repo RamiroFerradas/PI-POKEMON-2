@@ -119,8 +119,17 @@ export default function Home() {
                 <Link to={"/pokemons/" + ele.id}>
                   <Card
                     name={ele.name[0].toUpperCase() + ele.name.slice(1)}
-                    img={ele.img}
-                    type={ele.type ? ele.type.join(", ") : (ele.type = [10001])}
+                    img={
+                      ele.img ? (
+                        ele.img
+                      ) : (
+                        <img
+                          src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
+                          alt="pokemon"
+                        />
+                      )
+                    }
+                    type={ele.type ? ele.type.join(", ") : (ele.type = 10001)}
                   />
                 </Link>
               </div>

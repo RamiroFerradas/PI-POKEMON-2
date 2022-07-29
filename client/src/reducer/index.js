@@ -2,6 +2,7 @@ const initialState = {
   pokemons: [],
   allPokemons: [],
   typesList: [],
+  detail: {},
 };
 
 export default function pokemonReducer(state = initialState, action) {
@@ -11,6 +12,7 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: action.payload,
         allPokemons: action.payload,
+        // detail: action.payload,
       };
     case "GET_TYPES":
       return {
@@ -95,6 +97,13 @@ export default function pokemonReducer(state = initialState, action) {
     case "POST_POKEMON":
       return {
         ...state,
+      };
+    case "GET_POKEMONS_DETAILS":
+      console.log("soy reducer");
+      return {
+        ...state,
+        detail: action.payload,
+        // loading: false,
       };
 
     default:

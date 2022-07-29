@@ -30,8 +30,18 @@ router.get("/pokemons/:id", async (req, res) => {
 
 // if (!tipo || tipo.length === 0) tipo = [10001];
 router.post("/pokemons", async (req, res) => {
-  const { name, id, img, hp, attack, defense, weight, height, speed, type } =
+  let { name, id, img, hp, attack, defense, weight, height, speed, type } =
     req.body;
+  if (
+    !img ||
+    img === undefined ||
+    img === "" ||
+    !/(https?:\/\/.*\.(?:png|jpg|jpeg))/i.test(image)
+  ) {
+    img =
+      "https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67";
+  }
+  if (!type || type.length === 0) type = [10001];
 
   try {
     // name = name[0].toUpperCase() + name.slice(1);

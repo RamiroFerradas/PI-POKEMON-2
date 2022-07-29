@@ -67,6 +67,7 @@ async function getOnePokemonId(id) {
       },
     });
     console.log("ID DE POKEMON CREADO");
+
     return data;
   } else {
     //traigo pokemon desde la api
@@ -74,6 +75,7 @@ async function getOnePokemonId(id) {
       `https://pokeapi.co/api/v2/pokemon/${id}/`
     );
     console.log("ID DE POKEMON EN API");
+
     return crearPokemon(data);
   }
 }
