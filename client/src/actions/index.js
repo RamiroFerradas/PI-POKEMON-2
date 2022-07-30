@@ -1,5 +1,5 @@
 import axios from "axios";
-import Loading from "../components/Loading/Loading";
+// import Loading from "../components/Loading/Loading";
 
 export default function getPokemons() {
   return async function (dispatch) {
@@ -54,13 +54,13 @@ export function getNamePokemons(name) {
   return async function (dispatch) {
     try {
       var json = await axios(`http://localhost:3001/pokemons?name=${name}`);
-      if (!json) return <Loading />;
       return dispatch({
         type: "GET_NAME_POKEMONS",
         payload: json.data,
       });
     } catch (error) {
       console.log(error);
+      return alert("No existe el nombre del pokemon solicitado");
     }
   };
 }
@@ -68,7 +68,6 @@ export function getNamePokemons(name) {
 export function postPokemon(payload) {
   return async function (dispatch) {
     const json = await axios.post(`http://localhost:3001/pokemons`, payload);
-    console.log(json);
     return json;
   };
 }
@@ -76,7 +75,6 @@ export function postPokemon(payload) {
 export function getPokemonDetail(id) {
   return async function (dispatch) {
     try {
-      console.log("soy el actions");
       var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
       return dispatch({
         type: "GET_POKEMONS_DETAILS",
@@ -84,6 +82,8 @@ export function getPokemonDetail(id) {
       });
     } catch (error) {
       console.log("error", error);
+      // return <button>Regresar</button>;
+      return alert("No existe el id del pokemon solicitado");
     }
   };
 }

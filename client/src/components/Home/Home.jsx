@@ -20,6 +20,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.typesList);
   const allPokemons = useSelector((state) => state.pokemons);
+  // const prueba = useSelector((state) => state.pokemons);
   const [order, setOrder] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
@@ -63,85 +64,91 @@ export default function Home() {
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
   }
-  return (
-    <div className="header">
-      <Link to="/agregar">CREAR POKEMON</Link>
-      <h1>PI POKEMON</h1>
-      <button
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
-        Volver a cargar todos los pokemons
-      </button>
-      <div>
+  return !loading ? (
+    allPokemons ? (
+      <div className="header">
+        <Link to="/agregar">CREAR POKEMON</Link>
+        <h1>PI POKEMON</h1>
+        <button
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        >
+          Volver a cargar todos los pokemons
+        </button>
         <div>
-          <label>Tipo de pokemon: </label>
+          <div>
+            <label>Tipo de pokemon: </label>
 
-          <select onChange={(e) => handlerFilterByTypes(e)}>
-            <option value="all">all</option>
-            {allTypes?.map((type) => (
-              <option key={type.id} value={type.name}>
-                {type.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Order: </label>
-          <select onChange={(e) => handleSort(e)}>
-            {/* <option value="pokedex">pokedex</option> */}
-            <option value="asc">a-z</option>
-            <option value="dsc">z-a</option>
-          </select>
-        </div>
-        <div>
-          <label>Tipo de creacion: </label>
-          <select onChange={(e) => handlerFilterByCreated(e)}>
-            <option value="all">all</option>
-            <option value="existing">existing</option>
-            <option value="created">created</option>
-          </select>
-        </div>
-        <Paginado
-          pokemonsPorPagina={pokemonsPorPagina}
-          allPokemons={allPokemons.length}
-          paginado={paginado}
-        />
-        <SearchBar />
+            <select onChange={(e) => handlerFilterByTypes(e)}>
+              <option value="all">all</option>
+              {allTypes?.map((type) => (
+                <option key={type.id} value={type.name}>
+                  {type.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Order: </label>
+            <select onChange={(e) => handleSort(e)}>
+              {/* <option value="pokedex">pokedex</option> */}
+              <option value="asc">a-z</option>
+              <option value="dsc">z-a</option>
+            </select>
+          </div>
+          <div>
+            <label>Tipo de creacion: </label>
+            <select onChange={(e) => handlerFilterByCreated(e)}>
+              <option value="all">all</option>
+              <option value="existing">existing</option>
+              <option value="created">created</option>
+            </select>
+          </div>
+          <Paginado
+            pokemonsPorPagina={pokemonsPorPagina}
+            allPokemons={allPokemons.length}
+            paginado={paginado}
+          />
+          <SearchBar />
 
-        {!loading ? (
-          pokemonsActuales ? (
-            pokemonsActuales.map((ele) => {
-              return (
-                <div className="contenedorCards" key={ele.id}>
-                  {/* <h5>Tipo de pokemon: </h5> */}
-                  <Link to={`/pokemons/${ele.id}`}>
-                    <Card
-                      name={ele.name}
-                      img={
-                        ele.img ? (
-                          ele.img
-                        ) : (
-                          <img
-                            src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
-                            alt="pokemon"
-                          />
-                        )
-                      }
-                      type={ele.type ? ele.type.join(", ") : <Error404 />}
-                    />
-                  </Link>
-                </div>
-              );
-            })
+          {!loading ? (
+            allPokemons.length ? (
+              pokemonsActuales.map((ele) => {
+                return (
+                  <div className="contenedorCards" key={ele.id}>
+                    {/* <h5>Tipo de pokemon: </h5> */}
+                    <Link to={`/pokemons/${ele.id}`}>
+                      <Card
+                        name={ele.name}
+                        img={
+                          ele.img ? (
+                            ele.img
+                          ) : (
+                            <img
+                              src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
+                              alt="pokemon"
+                            />
+                          )
+                        }
+                        type={ele.type ? ele.type.join(", ") : <Error404 />}
+                      />
+                    </Link>
+                  </div>
+                );
+              })
+            ) : (
+              <Error404 />
+            )
           ) : (
-            <Error404 />
-          )
-        ) : (
-          <Loading />
-        )}
+            <Loading />
+          )}
+        </div>
       </div>
-    </div>
+    ) : (
+      <Error404 />
+    )
+  ) : (
+    <Loading />
   );
 }

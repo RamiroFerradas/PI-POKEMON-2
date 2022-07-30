@@ -43,7 +43,6 @@ export default function pokemonReducer(state = initialState, action) {
           if (action.payload === "all") {
             return state.allPokemons;
           } else {
-            // console.log(ele.type);
             if (ele.type.length === 1) {
               return ele.type[0] === action.payload;
             }
@@ -53,7 +52,6 @@ export default function pokemonReducer(state = initialState, action) {
                 ele.type[1]?.name === action.payload
               );
             } else {
-              console.log("soy el else");
               return alert(`No hay pokémons de tipo ${action.payload}`);
             }
           }
@@ -132,9 +130,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: [],
-        allPokemons: [],
-        detail: {},
-        loading: true,
+        page: 1,
         // page: 1,
       };
 

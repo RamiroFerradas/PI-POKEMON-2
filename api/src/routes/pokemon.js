@@ -51,8 +51,7 @@ async function getPokemon() {
   const arrayResultado = [];
   //info limpioa de cada uno me lo guardo en mi array:
   infoLimpia.forEach((ele) => arrayResultado.push(crearPokemon(ele)));
-  // console.log(ele.data);
-  // console.log(arrayResultado);
+
   console.log("INFO DE TODOS LOS POKEMONS ");
   return arrayResultado;
 }

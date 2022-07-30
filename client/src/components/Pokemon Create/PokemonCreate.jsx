@@ -43,12 +43,10 @@ export function PokemonCreate() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(input);
+    // console.log(input);
   };
 
   const handlerFirstSelect = (e) => {
-    console.log(input, "soy input");
-
     if (input.type.length <= 1) {
       setInput({
         ...input,
@@ -68,7 +66,6 @@ export function PokemonCreate() {
   };
 
   const handlerSecondSelect = (e) => {
-    console.log(input, "soy input2");
     if (input.type.length === 0) {
       alert("Primero debes de escoger tu primer tipo");
       e.target.value = "DEFAULT";
@@ -94,7 +91,7 @@ export function PokemonCreate() {
 
   const handlerCreatePokemon = (e) => {
     e.preventDefault();
-    console.log(input);
+    // console.log(input);
     dispatch(postPokemon({ ...input, name: input.name.toLowerCase() }));
     alert("Tu pokemon ha sido creado exitosamente");
     setInput({
@@ -117,9 +114,24 @@ export function PokemonCreate() {
 
   function validate(input) {
     let errors = {};
-    if (!input.name) {
-      errors.name = "Se requiere un Nombre";
-    }
+    if (
+      allPokemons.find(
+        (pokemon) => pokemon.name.toUpperCase() === input.name.toUpperCase()
+      )
+    )
+      errors.name =
+        "Ya existe un pokemon con ese nombre, prueba con escoger otro";
+    if (!input.name)
+      errors.name = "Tu poke necesita un nombre, escoge el mejor";
+    if (/[1-9]/.test(input.name))
+      errors.name = "El nombre de tu poke no puede contener numeros";
+    if (/[\s]/.test(input.name))
+      errors.name = "El nombre de tu poke no puede contener espacios";
+    if (/[^\w\s]/.test(input.name))
+      errors.name =
+        "El nombre de tu poke no puede contener caracteres especiales";
+    // if (!/\.(jpg|png|gif)$/i.test(input.img))
+    //   errors.img = "La url que intentas colocar no es valida";
     return errors;
   }
   const [errors, setErrors] = useState({});
@@ -152,9 +164,12 @@ export function PokemonCreate() {
   const [disabledButton, setDisabledButton] = useState(true);
 
   useEffect(() => {
-    console.log(errors, "soy el errors");
+    // console.log(errors, "soy el errors");
     if (
       input.name === "" ||
+      /[1-9]/.test(input.name) ||
+      /[\s]/.test(input.name) ||
+      /[^\w\s]/.test(input.name) ||
       input.type.length < 1 ||
       input.hp.length < 1 ||
       input.attack.length < 1 ||
@@ -284,6 +299,7 @@ export function PokemonCreate() {
                 onChange={(e) => handlerChange(e)}
                 autoComplete="off"
               />
+              {errors.img && <p>{errors.img}</p>}
             </div>
             <div>
               <label>Type:</label>

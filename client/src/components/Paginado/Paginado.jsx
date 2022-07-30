@@ -15,15 +15,15 @@ export default function Paginado({ pokemonsPorPagina, allPokemons, paginado }) {
       <ul className="ul">
         {numeroPagina?.map((number) => {
           return (
-            <li className="li" key={number}>
-              <button
-                enabled={`background-color: black`}
-                className="button1"
-                onClick={() => paginado(number)}
-              >
-                {number}
-              </button>
-            </li>
+            // <li className="li" key={number}>
+            <button
+              enabled={`background-color: black`}
+              className="li"
+              onClick={() => paginado(number)}
+            >
+              {number}
+            </button>
+            // </li>
           );
         })}
       </ul>
