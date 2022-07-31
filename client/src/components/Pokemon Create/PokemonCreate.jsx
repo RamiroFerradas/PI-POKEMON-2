@@ -4,9 +4,8 @@ import { getTypes, postPokemon } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import getPokemons from "../../actions";
 import { useNavigate } from "react-router-dom";
-// import PokemonCreate from "../Pokemon Create/PokemonCreate.css";
+
 import "./PokemonCreate.css";
-import Loading from "../Loading/Loading";
 
 export function PokemonCreate() {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ export function PokemonCreate() {
         [e.target.name]: e.target.value,
       })
     );
-    // console.log(input);
+    console.log(input);
   };
 
   const handlerFirstSelect = (e) => {
@@ -229,6 +228,7 @@ export function PokemonCreate() {
               <input
                 type="range"
                 name="attack"
+                max="200"
                 value={input.attack}
                 placeholder="Ejem: 12"
                 onChange={(e) => handlerChange(e)}

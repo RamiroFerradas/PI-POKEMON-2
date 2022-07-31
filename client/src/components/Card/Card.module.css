@@ -1,0 +1,135 @@
+.cardHome {
+  width: 20rem;
+  height: 23rem;
+  border-radius: 30px;
+  background: #212121;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
+
+  background-color: #212121d8;
+  border-radius: 1rem;
+  border: #212121 0.2rem solid;
+  transition: all 0.4s ease-in;
+  box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+
+  float: left;
+  text-align: center;
+  /* width: 20rem; */
+  margin-left: 40px;
+  margin-top: 40px;
+  margin-right: 20px;
+  /* padding-right: px; */
+  padding-bottom: 30px;
+}
+
+.cardHome:hover {
+  transform: translateY(-1.5rem);
+  border: #6220fb 0.2em solid;
+  border-radius: 2.5rem 0 2.5rem 0;
+}
+
+.imgCard {
+  width: 20rem;
+  height: 18rem;
+  margin-right: 60px;
+}
+/* .cardHome {
+  float: left;
+  display: flex;
+  background-color: rgba(127, 126, 126, 0.424);
+
+  text-align: center;
+  width: 20rem;
+  margin-left: 30px;
+  margin-top: 27px;
+  justify-content: center;
+  border-radius: 80px 80px 80px 80px;
+  -moz-border-radius: 80px 80px 80px 80px;
+  -webkit-border-radius: 80px 80px 80px 80px;
+  border: 0px solid #000000;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  -webkit-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+}
+
+.cardHome:hover {
+  transition: 10ms;
+  float: left;
+  display: flex;
+  background-color: rgba(37, 37, 37, 0.424);
+  text-align: center;
+  width: 20rem;
+  margin-left: 30px;
+  margin-top: 27px;
+  justify-content: center;
+  border-radius: 80px 80px 80px 80px;
+  -moz-border-radius: 80px 80px 80px 80px;
+  -webkit-border-radius: 80px 80px 80px 80px;
+  border: 0px solid #000000;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  -webkit-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
+} */
+
+/* From uiverse.io by @bhaveshxrawat */
+/* .cardHome {
+  width: 190px;
+  height: 254px;
+  background: #07182e;
+  position: relative;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.cardHome .titleCard {
+  z-index: 1;
+  color: white;
+  font-size: 2em;
+}
+.cardHome .imgCard {
+  z-index: 1;
+  color: white;
+  font-size: 2em;
+}
+
+.cardHome::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0, 183, 255),
+    rgb(255, 48, 255)
+  );
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cardHome::after {
+  content: "";
+  position: absolute;
+  background: #07182e;
+  inset: 5px;
+  border-radius: 15px;
+} */
+/* .card:hover:before {
+  background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
+  animation: rotBGimg 3.5s linear infinite;
+} */

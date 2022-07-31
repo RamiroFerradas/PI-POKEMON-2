@@ -44,12 +44,12 @@ export default function pokemonReducer(state = initialState, action) {
             return state.allPokemons;
           } else {
             if (ele.type.length === 1) {
-              return ele.type[0] === action.payload;
+              return ele.type[0].includes(action.payload);
             }
             if (ele.type.length === 2) {
               return (
-                ele.type[0]?.name === action.payload ||
-                ele.type[1]?.name === action.payload
+                ele.type[0].includes(action.payload) ||
+                ele.type[1].includes(action.payload)
               );
             } else {
               return alert(`No hay pokémons de tipo ${action.payload}`);
@@ -84,7 +84,43 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: arrayOrdenamiento,
       };
-
+    case "FILTER_BY_STRENGTH":
+      const currentPokemons2 = [...state.pokemons];
+      if (action.payload === "default") {
+        currentPokemons2.sort((obj1, obj2) => {
+          if (obj1.id < obj2.id) {
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+      }
+      if (action.payload === "stronger") {
+        currentPokemons2.sort((obj1, obj2) => {
+          if (obj1.attack < obj2.attack) {
+            return 1;
+          } else if (obj1.attack > obj2.attack) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+      }
+      if (action.payload === "weaker") {
+        currentPokemons2.sort((obj1, obj2) => {
+          if (obj1.attack < obj2.attack) {
+            return -1;
+          } else if (obj1.attack > obj2.attack) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+      }
+      return {
+        ...state,
+        pokemons: currentPokemons2,
+      };
     case "GET_NAME_POKEMONS":
       if (action.payload.msj) {
         let error = { error: "No se encontró el pokémon" };
@@ -120,7 +156,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         // allPokemons: [],
-        // pokemons: [],
+        pokemons: [],
         detail: {},
         page: 1,
         loading: true,
@@ -132,6 +168,11 @@ export default function pokemonReducer(state = initialState, action) {
         pokemons: [],
         page: 1,
         // page: 1,
+      };
+    case "ERROR_404":
+      return {
+        ...state,
+        pokemons: state.allPokemons,
       };
 
     default:

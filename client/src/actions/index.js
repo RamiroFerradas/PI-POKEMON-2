@@ -42,6 +42,12 @@ export function filterByTypes(payload) {
     payload,
   };
 }
+export function filterByStrength(payload) {
+  return {
+    type: "FILTER_BY_STRENGTH",
+    payload,
+  };
+}
 
 export function orderByName(payload) {
   return {
@@ -97,5 +103,11 @@ export function cleanCache() {
 export function cleanCacheAll() {
   return {
     type: "CLEAN_CACHE_ALL",
+  };
+}
+
+export function err404() {
+  return {
+    type: "ERROR_404",
   };
 }

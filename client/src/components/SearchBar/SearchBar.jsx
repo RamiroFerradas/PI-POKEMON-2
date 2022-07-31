@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNamePokemons } from "../../actions";
-import Loading from "../Loading/Loading";
-import "./SearchBar.css";
+
+import styles from "../SearchBar/SearchBar.module.css";
 
 // import useHistory from "react-router-dom";
 
@@ -11,7 +11,7 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [paginaActual, setPaginaActual] = useState(1);
-  const loading = useSelector((state) => state.loading);
+  // const loading = useSelector((state) => state.loading);
 
   function handleInputChange(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function SearchBar() {
           type="text"
           placeholder="Buscar Pokemon"
           onChange={handleInputChange}
-          className="input"
+          className={styles.inputBusqueda}
           // disabled={!name}
         />
         {/* <button disabled={!name} type="submit">

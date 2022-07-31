@@ -1,0 +1,57 @@
+/* .input {
+  line-height: 28px;
+  border: 2px solid transparent;
+  border-bottom-color: #777;
+  padding: 0.2rem 0;
+  outline: none;
+  background-color: transparent;
+  color: #0d0c22;
+  transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.input:focus,
+input:hover {
+  outline: none;
+  padding: 0.2rem 1rem;
+  border-radius: 1rem;
+  border-color: #7a9cc6;
+}
+
+.input::placeholder {
+  color: #777;
+}
+
+.input:focus::placeholder {
+  opacity: 0;
+  transition: opacity 0.3s;
+} */
+
+.inputBusqueda {
+  margin-left: 2.5rem;
+  background-color: #21212149;
+  max-width: 250px;
+  height: 24px;
+  width: 50rem;
+  padding: 10px;
+  /* text-align: center; */
+  border: 2px solid white;
+  border-radius: 5px;
+  /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
+}
+
+.inputBusqueda:hover {
+  color: #6220fb;
+  background-color: #212121;
+  outline-color: #6220fb;
+  box-shadow: -3px -3px 20px #6220fb;
+  transition: 0.1s;
+  transition-property: box-shadow;
+}
+.inputBusqueda:focus {
+  color: #6220fb;
+  background-color: #212121;
+  outline-color: #6220fb;
+  box-shadow: -3px -3px 20px #6220fb;
+  transition: 0.1s;
+  transition-property: box-shadow;
+}
