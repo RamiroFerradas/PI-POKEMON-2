@@ -148,7 +148,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
-        loading: false,
+        // loading: true,
         // loading: false,
       };
 

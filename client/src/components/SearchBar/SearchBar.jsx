@@ -1,18 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNamePokemons } from "../../actions";
-
+import getPokemons, { getNamePokemons } from "../../actions";
+// import { useNavigate } from "react-router-dom";
 import styles from "../SearchBar/SearchBar.module.css";
+// import setPaginaActual
 
 // import useHistory from "react-router-dom";
 
-export default function SearchBar() {
+export default function SearchBar({ setPaginaActual }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-  const [paginaActual, setPaginaActual] = useState(1);
-  // const loading = useSelector((state) => state.loading);
-
+  const [paginaActual] = useState(1);
+  const loading = useSelector((state) => state.loading);
+  // let navigate = useNavigate();
+  // let pokemon = useSelector((state) => state.pokemons);
   function handleInputChange(e) {
     e.preventDefault();
     setName(e.target.value.toLowerCase());
@@ -20,29 +22,23 @@ export default function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (name === "") {
-      alert("Debes de ingresar el nombre del pokemon que deseas buscar");
-    } else {
-      dispatch(getNamePokemons(name));
-      setPaginaActual(() => 1);
-      e.target.reset();
-    }
+
+    dispatch(getNamePokemons(name));
+    setPaginaActual(() => 1);
+    e.target.reset();
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           placeholder="Buscar Pokemon"
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e)}
           className={styles.inputBusqueda}
-          // disabled={!name}
         />
-        {/* <button disabled={!name} type="submit">
-          Buscar
-        </button> */}
       </form>
+      {/* {pokemon.id && navigate(`/pokemons/${pokemon.id}`)} */}
     </div>
   );
 }

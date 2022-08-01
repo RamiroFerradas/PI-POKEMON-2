@@ -87,7 +87,4 @@ router.delete("/pokemons/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 module.exports = router;

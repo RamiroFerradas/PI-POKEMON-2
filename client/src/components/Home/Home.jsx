@@ -24,18 +24,19 @@ export default function Home() {
   const allPokemons = useSelector((state) => state.pokemons);
   // const prueba = useSelector((state) => state.pokemons);
   const [order, setOrder] = useState("");
+
   const [paginaActual, setPaginaActual] = useState(1);
   const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
+
   const indiceUltimoPokemon = paginaActual * pokemonsPorPagina;
   const indicePrimerPokemon = indiceUltimoPokemon - pokemonsPorPagina;
   const loading = useSelector((state) => state.loading);
 
-  // const navigate = useNavigate();
   const pokemonsActuales = allPokemons.slice(
     indicePrimerPokemon,
     indiceUltimoPokemon
   );
-  // console.log(allTypes, "SOY EL HOME");
+
   const paginado = (numeroPagina) => {
     setPaginaActual(numeroPagina);
   };
@@ -70,6 +71,7 @@ export default function Home() {
     dispatch(orderByName(e.target.value));
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
+    console.log(allTypes, "soy alltypes");
   }
   return !loading ? (
     allPokemons ? (
@@ -94,13 +96,15 @@ export default function Home() {
             </button>
           </div>
           <div className={styles.divSearchBar}>
-            <SearchBar />
+            <SearchBar setPaginaActual={setPaginaActual} />
           </div>
         </div>
-        <div class={styles.loader}></div>
+
+        {/* <div className={styles.loader}></div> */}
+
         <div className={styles.parentFiltros}>
           <div className={styles.divTipos}>
-            <label>Tipo de pokemon: </label>
+            <label className={styles.fontFiltros}>Tipo de pokemon: </label>
 
             <select onChange={(e) => handlerFilterByTypes(e)}>
               <option value="all">all</option>
@@ -112,7 +116,7 @@ export default function Home() {
             </select>
           </div>
           <div className={styles.divOrdenAZ}>
-            <label>Orden alfabetico: </label>
+            <label className={styles.fontFiltros}>Orden alfabetico: </label>
             <select
               className={styles.selectOrderAz}
               onChange={(e) => handleSort(e)}
@@ -123,7 +127,7 @@ export default function Home() {
             </select>
           </div>
           <div className={styles.divCreacion}>
-            <label>Tipo de creacion: </label>
+            <label className={styles.fontFiltros}>Tipo de creacion: </label>
             <select onChange={(e) => handlerFilterByCreated(e)}>
               <option value="all">all</option>
               <option value="existing">existing</option>
@@ -131,7 +135,7 @@ export default function Home() {
             </select>
           </div>
           <div className={styles.divOrdenAtaque}>
-            <label>Tipo de fuerza: </label>
+            <label className={styles.fontFiltros}>Tipo de fuerza: </label>
             <select onChange={(e) => handlerFilterByStrength(e)}>
               <option value="default">default</option>
               <option value="stronger">stronger</option>

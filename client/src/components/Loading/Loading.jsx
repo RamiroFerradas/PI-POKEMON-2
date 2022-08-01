@@ -1,6 +1,6 @@
 import React from "react";
 import load from "../../assets/img/loading3.gif";
-import "./Loading.css";
+import styles from "../Loading/Loading.module.css";
 // import { useNavigate } from "react-router-dom";
 // import { cleanCache } from "../../actions";
 // import { useDispatch } from "react-redux";
@@ -13,7 +13,7 @@ export default function Loading() {
   //   dispatch(cleanCache());
   // };
   return (
-    <div className="contenedorLoading">
+    <div className={styles.contenedorLoading}>
       <img src={load} alt="loading" />
       {/* <div>
         {" "}
