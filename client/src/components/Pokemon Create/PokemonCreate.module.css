@@ -59,6 +59,7 @@
   background: transparent;
   max-width: 190px;
   font-family: monospace;
+  margin-left: 1rem;
   /* margin-bottom: 15rem; */
 }
 
@@ -175,7 +176,7 @@
   border-radius: 10px;
   font-family: Arial;
   font-weight: 600;
-  margin-left: 10rem;
+  margin-left: 12rem;
   margin-top: 2rem;
 }
 

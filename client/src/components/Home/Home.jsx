@@ -73,7 +73,7 @@ export default function Home() {
     setOrder(`Ordenado${e.target.value}`);
   }
   return !loading ? (
-    allPokemons ? (
+    allPokemons.length ? (
       <div className={styles.header}>
         <div className={styles.parent}>
           <div className={styles.divTitulo}>
@@ -84,7 +84,7 @@ export default function Home() {
               <button className={styles.buttonCrear}>CREAR POKEMON</button>
             </Link>
           </div>
-          <div className={styles.divCargarZZ}>
+          <div className={styles.divCargar}>
             <button
               className={styles.buttonCarga}
               onClick={(e) => {

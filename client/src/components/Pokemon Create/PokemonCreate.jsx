@@ -366,15 +366,14 @@ export function PokemonCreate() {
                   </select>
                 </div>
               </div>
-
-              <button
-                disabled={disabledButton}
-                onClick={(e) => handlerCreatePokemon(e)}
-                className={styles.btnCreate}
-              >
-                CREAR POKEMON
-              </button>
             </div>
+            <button
+              disabled={disabledButton}
+              onClick={(e) => handlerCreatePokemon(e)}
+              className={styles.btnCreate}
+            >
+              CREAR POKEMON
+            </button>
           </form>
         </div>
       </div>
