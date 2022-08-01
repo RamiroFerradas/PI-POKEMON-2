@@ -2,8 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getPokemons, { getNamePokemons } from "../../actions";
+import { setLoading } from "../../actions";
 // import { useNavigate } from "react-router-dom";
 import styles from "../SearchBar/SearchBar.module.css";
+import Loading from "../Loading/Loading";
 // import setPaginaActual
 
 // import useHistory from "react-router-dom";
@@ -12,7 +14,7 @@ export default function SearchBar({ setPaginaActual }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [paginaActual] = useState(1);
-  const loading = useSelector((state) => state.loading);
+  let loading = useSelector((state) => state.loading);
   // let navigate = useNavigate();
   // let pokemon = useSelector((state) => state.pokemons);
   function handleInputChange(e) {
@@ -22,7 +24,7 @@ export default function SearchBar({ setPaginaActual }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    dispatch(setLoading());
     dispatch(getNamePokemons(name));
     setPaginaActual(() => 1);
     e.target.reset();
@@ -38,7 +40,6 @@ export default function SearchBar({ setPaginaActual }) {
           className={styles.inputBusqueda}
         />
       </form>
-      {/* {pokemon.id && navigate(`/pokemons/${pokemon.id}`)} */}
     </div>
   );
 }

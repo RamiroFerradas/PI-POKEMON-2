@@ -148,8 +148,8 @@ export function PokemonCreate() {
       errors.height = "El valor debe estar entre 1 y 100";
     if (input.weight > 100 || input.weight < 1 || !/\d/g.test(input.weight))
       errors.weight = "El valor debe estar entre 1 y 100";
-    // if (!/\.(jpg|png|gif)$/i.test(input.img))
-    //   errors.img = "La url que intentas colocar no es valida";
+    if (!/\.(jpg|png|gif)$/i.test(input.img))
+      errors.img = "La url que intentas colocar no es valida";
     return errors;
   }
   const [errors, setErrors] = useState({});
@@ -187,7 +187,7 @@ export function PokemonCreate() {
             {/*PRIMERA COLUMNA */}
             <div className={styles.textoForm}>
               <div className={styles.primerColumna}>
-                <div>
+                <div className={styles.name}>
                   <div className={styles.group}>
                     <label className={styles.labelName}>Name:</label>
                     <input
@@ -202,14 +202,14 @@ export function PokemonCreate() {
                     />
                     <span class={styles.highlight}></span>
                     <span class={styles.bar}></span>
+                    <div className={styles.errors}>
+                      {errors.name && <p>{errors.name}</p>}
+                    </div>
                   </div>
-                  {errors.name && (
-                    <p className={styles.errors}>{errors.name}</p>
-                  )}
                 </div>
                 <div>
-                  <div>
-                    <label className={styles.hp}>Hp:</label>
+                  <div className={styles.hp}>
+                    <label>Hp:</label>
                     <span value={input.hp}></span>
                     {/* <span>{input}</span> */}
                     <input
@@ -222,10 +222,12 @@ export function PokemonCreate() {
                       onChange={(e) => handlerChange(e)}
                     />
                     <span>{input.hp}</span>
-                    {errors.hp && <p className={styles.errors}>{errors.hp}</p>}
+                    <div className={styles.errors}>
+                      {errors.hp && <p>{errors.hp}</p>}
+                    </div>
                   </div>
-                  <div>
-                    <label className={styles.attack}>Attack:</label>
+                  <div className={styles.attack}>
+                    <label>Attack:</label>
                     <input
                       type="range"
                       name="attack"
@@ -236,12 +238,12 @@ export function PokemonCreate() {
                       autoComplete="off"
                     />
                     <span>{input.attack}</span>
-                    {errors.attack && (
-                      <p className={styles.errors}>{errors.attack}</p>
-                    )}
+                    <div className={styles.errors}>
+                      {errors.attack && <p>{errors.attack}</p>}
+                    </div>
                   </div>
-                  <div>
-                    <label className={styles.defense}>Defense:</label>
+                  <div className={styles.defense}>
+                    <label>Defense:</label>
                     <input
                       type="range"
                       name="defense"
@@ -251,12 +253,14 @@ export function PokemonCreate() {
                       autoComplete="off"
                     />
                     <span>{input.defense}</span>
-                    {errors.defense && (
-                      <p className={styles.errors}>{errors.defense}</p>
-                    )}
+                    <div className={styles.errors}>
+                      {errors.defense && (
+                        <p className={styles.errors}>{errors.defense}</p>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <label className={styles.weight}>Weight:</label>
+                  <div className={styles.weight}>
+                    <label>Weight:</label>
                     <input
                       type="range"
                       name="weight"
@@ -266,16 +270,16 @@ export function PokemonCreate() {
                       autoComplete="off"
                     />
                     <span>{input.weight}</span>
-                    {errors.weight && (
-                      <p className={styles.errors}>{errors.weight}</p>
-                    )}
+                    <div className={styles.errors}>
+                      {errors.weight && <p>{errors.weight}</p>}
+                    </div>
                   </div>
                 </div>
               </div>
               {/*SEGUNDA COLUMNA */}
               <div className={styles.segundaColumna}>
-                <div>
-                  <label className={styles.height}>Height:</label>
+                <div className={styles.height}>
+                  <label>Height:</label>
                   <input
                     type="range"
                     name="height"
@@ -285,12 +289,13 @@ export function PokemonCreate() {
                     autoComplete="off"
                   />
                   <span>{input.height}</span>
-                  {errors.height && (
-                    <p className={styles.errors}>{errors.height}</p>
-                  )}
+                  <div className={styles.errors}>
+                    {errors.height && <p>{errors.height}</p>}
+                  </div>
                 </div>
-                <div>
-                  <label className={styles.speed}>Speed:</label>
+
+                <div className={styles.speed}>
+                  <label>Speed:</label>
                   <input
                     type="range"
                     name="speed"
@@ -300,13 +305,13 @@ export function PokemonCreate() {
                     autoComplete="off"
                   />
                   <span>{input.speed}</span>
-                  {errors.speed && (
-                    <p className={styles.errors}>{errors.speed}</p>
-                  )}
+                  <div className={styles.errors}>
+                    {errors.speed && <p>{errors.speed}</p>}
+                  </div>
                 </div>
 
-                <div>
-                  <label className={styles.imagen}>Imagen:</label>
+                <div className={styles.imagen}>
+                  <label>Imagen:</label>
                   <input
                     type="text"
                     name="img"
@@ -316,10 +321,12 @@ export function PokemonCreate() {
                     className={styles.inputsForm}
                     autoComplete="off"
                   />
-                  {errors.img && <p className={styles.errors}>{errors.img}</p>}
+                  <div className={styles.errors}>
+                    {errors.img && <p>{errors.img}</p>}
+                  </div>
                 </div>
-                <div>
-                  <label className={styles.type}> Type:</label>
+                <div className={styles.type}>
+                  <label> Type:</label>
                   <select
                     defaultValue={"DEFAULT"}
                     onChange={(e) => handlerFirstSelect(e)}
@@ -337,8 +344,8 @@ export function PokemonCreate() {
                       })}
                   </select>
                 </div>
-                <div>
-                  <label className={styles.type2}>Seccond type:</label>
+                <div className={styles.type}>
+                  <label>Type:</label>
                   <select
                     defaultValue={"DEFAULT"}
                     onChange={(e) => handlerSecondSelect(e)}
@@ -359,6 +366,7 @@ export function PokemonCreate() {
                   </select>
                 </div>
               </div>
+
               <button
                 disabled={disabledButton}
                 onClick={(e) => handlerCreatePokemon(e)}
@@ -369,10 +377,10 @@ export function PokemonCreate() {
             </div>
           </form>
         </div>
-        <button onClick={cleanAndBack} className={styles.buttonBack}>
-          {"<-"} VOLVER
-        </button>
       </div>
+      <button onClick={cleanAndBack} className={styles.buttonBack}>
+        {"<-"} VOLVER
+      </button>
     </div>
   );
 }

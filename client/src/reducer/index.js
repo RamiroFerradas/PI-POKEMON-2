@@ -134,6 +134,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: action.payload,
+        loading: false,
       };
 
     case "POST_POKEMON":
@@ -174,6 +175,20 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: state.allPokemons,
       };
+
+    case "SET_LOADING":
+      const estadoDelestado = state.loading;
+      if (estadoDelestado === true) {
+        return {
+          ...state,
+          loading: false,
+        };
+      } else {
+        return {
+          ...state,
+          loading: true,
+        };
+      }
 
     default:
       return state;

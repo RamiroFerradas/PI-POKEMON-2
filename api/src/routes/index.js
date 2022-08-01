@@ -83,7 +83,6 @@ router.delete("/pokemons/:id", async (req, res, next) => {
     res.status(200).json(await models.deletePokemon(id));
     console.log(`SE BORRO EL POKEMON ${id} CON EXITO !!`);
   } catch (error) {
-    console.log("hola");
     next(error);
   }
 });

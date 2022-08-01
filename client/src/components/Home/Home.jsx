@@ -71,7 +71,6 @@ export default function Home() {
     dispatch(orderByName(e.target.value));
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
-    console.log(allTypes, "soy alltypes");
   }
   return !loading ? (
     allPokemons ? (
@@ -85,7 +84,7 @@ export default function Home() {
               <button className={styles.buttonCrear}>CREAR POKEMON</button>
             </Link>
           </div>
-          <div className={styles.divCargar}>
+          <div className={styles.divCargarZZ}>
             <button
               className={styles.buttonCarga}
               onClick={(e) => {

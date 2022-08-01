@@ -232,12 +232,13 @@ async function getConcatenado(name) {
       type: ele.tipos.map((ele) => ele.name),
     };
   });
-  console.log(mapeo);
+  console.log(getApi, "soy api");
   const getFinal = getApi.concat(mapeo);
   if (name) {
     let buscar = getFinal.filter(
       (ele) => ele.name.toLowerCase() === name.toLowerCase()
     );
+    console.log(buscar, "soy buscar");
     if (buscar.length > 0) {
       return buscar;
     }

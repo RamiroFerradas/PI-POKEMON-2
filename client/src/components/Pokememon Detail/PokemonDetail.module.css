@@ -10,7 +10,9 @@ body {
   /* justify-content: space-around; */
   margin-left: 40%;
   /* padding-top: 5rem; */
-  /* margin-top: 5rem; */
+  letter-spacing: 2.5px;
+  /* size: 5rem; */
+  margin-top: 2rem;
 }
 
 /* .buttonBack {
@@ -115,13 +117,15 @@ body {
 }
 .detalles {
   margin-left: 13rem;
-  margin-top: 1rem;
-  size: 90px;
-  font-size: 20px;
+  /* margin-bottom: ; */
+  size: 8px;
+  /* font-size: 20px; */
   color: #e2e2c7;
+  line-height: 9px;
 }
 .fontDetail {
   font-family: monospace;
+  border-radius: 5px solid black;
 }
 
 .imgDetail {

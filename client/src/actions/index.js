@@ -197,7 +197,6 @@ export function getPokemonDetail(id) {
   return async function (dispatch) {
     try {
       var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
-      console.log(json, "soy el json");
       return dispatch({
         type: "GET_POKEMONS_DETAILS",
         payload: json.data,
@@ -225,5 +224,10 @@ export function cleanCacheAll() {
 export function err404() {
   return {
     type: "ERROR_404",
+  };
+}
+export function setLoading() {
+  return {
+    type: "SET_LOADING",
   };
 }
