@@ -40,7 +40,7 @@ export default function DetailsPokemonPage(props) {
     dispatch(cleanCacheAll());
     dispatch(deletePokemon(id));
   };
-
+  console.log(pokemonInfo, "soy pokemonInfo");
   return pokemon ? (
     pokemonInfo.img ? (
       <div>
