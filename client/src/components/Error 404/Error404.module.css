@@ -1,4 +1,6 @@
 .contenedor404 {
+  background-color: rgba(225, 230, 230, 0.238);
+  filter: blur(6px);
   text-align: center;
 }
 
@@ -56,6 +58,8 @@
 }
 .imgError {
   /* background-color: red; */
-  width: 60rem;
-  height: 35rem;
+  width: 55rem;
+  height: 25rem;
+  margin-top: 15rem;
+  margin-left: 25%;
 }

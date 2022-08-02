@@ -14,7 +14,7 @@ import {
   orderByName,
   filterByStrength,
 } from "../../actions/index";
-import { useNavigate } from "react-router-dom";
+
 import Error404 from "../Error 404/Error404";
 import styles from "../Home/Home.module.css";
 
@@ -72,121 +72,115 @@ export default function Home() {
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
   }
-  return !loading ? (
-    allPokemons.length ? (
-      <div className={styles.header}>
-        <div className={styles.parent}>
-          <div className={styles.divTitulo}>
-            <h1 className={styles.titulo}>POKEAPP</h1>
-          </div>
-          <div className={styles.divCrear}>
-            <Link to="/agregar">
-              <button className={styles.buttonCrear}>CREAR POKEMON</button>
-            </Link>
-          </div>
-          <div className={styles.divCargar}>
-            <button
-              className={styles.buttonCarga}
-              onClick={(e) => {
-                handleClick(e);
-              }}
-            >
-              recargar pokemons
-            </button>
-          </div>
-          <div className={styles.divSearchBar}>
-            <SearchBar setPaginaActual={setPaginaActual} />
-          </div>
+  return (
+    <div className={styles.header}>
+      <div className={styles.parent}>
+        <div className={styles.divTitulo}>
+          <h1 className={styles.titulo}>POKEAPP</h1>
         </div>
-
-        {/* <div className={styles.loader}></div> */}
-
-        <div className={styles.parentFiltros}>
-          <div className={styles.divTipos}>
-            <label className={styles.fontFiltros}>Tipo de pokemon: </label>
-
-            <select onChange={(e) => handlerFilterByTypes(e)}>
-              <option value="all">all</option>
-              {allTypes?.map((type) => (
-                <option key={type.id} value={type.name}>
-                  {type.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.divOrdenAZ}>
-            <label className={styles.fontFiltros}>Orden alfabetico: </label>
-            <select
-              className={styles.selectOrderAz}
-              onChange={(e) => handleSort(e)}
-            >
-              {/* <option value="pokedex">pokedex</option> */}
-              <option value="asc">a-z</option>
-              <option value="dsc">z-a</option>
-            </select>
-          </div>
-          <div className={styles.divCreacion}>
-            <label className={styles.fontFiltros}>Tipo de creacion: </label>
-            <select onChange={(e) => handlerFilterByCreated(e)}>
-              <option value="all">all</option>
-              <option value="existing">existing</option>
-              <option value="created">created</option>
-            </select>
-          </div>
-          <div className={styles.divOrdenAtaque}>
-            <label className={styles.fontFiltros}>Tipo de fuerza: </label>
-            <select onChange={(e) => handlerFilterByStrength(e)}>
-              <option value="default">default</option>
-              <option value="stronger">stronger</option>
-              <option value="weaker">weaker</option>
-            </select>
-          </div>
+        <div className={styles.divCrear}>
+          <Link to="/agregar">
+            <button className={styles.buttonCrear}>CREAR POKEMON</button>
+          </Link>
         </div>
-
-        {!loading ? (
-          allPokemons.length ? (
-            pokemonsActuales.map((ele) => {
-              return (
-                <div key={ele.id}>
-                  {/* <h5>Tipo de pokemon: </h5> */}
-                  <Link to={`/pokemons/${ele.id}`}>
-                    <Card
-                      name={ele.name}
-                      img={
-                        ele.img ? (
-                          ele.img
-                        ) : (
-                          <img
-                            src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
-                            alt="pokemon"
-                          />
-                        )
-                      }
-                      type={ele.type}
-                    />
-                  </Link>
-                </div>
-              );
-            })
-          ) : (
-            <Error404 />
-          )
-        ) : (
-          <Loading />
-        )}
-        {/* <div class={styles.loader2}></div> */}
-        <div className={styles.paginadoHome}>
-          <Paginado
-            pokemonsPorPagina={pokemonsPorPagina}
-            allPokemons={allPokemons.length}
-            paginado={paginado}
-          />
+        <div className={styles.divCargar}>
+          <button
+            className={styles.buttonCarga}
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            recargar pokemons
+          </button>
+        </div>
+        <div className={styles.divSearchBar}>
+          <SearchBar setPaginaActual={setPaginaActual} />
         </div>
       </div>
-    ) : (
-      <Error404 />
-    )
-  ) : (
-    <Loading />
+
+      {/* <div className={styles.loader}></div> */}
+
+      <div className={styles.parentFiltros}>
+        <div className={styles.divTipos}>
+          <label className={styles.fontFiltros}>Tipo de pokemon: </label>
+
+          <select onChange={(e) => handlerFilterByTypes(e)}>
+            <option value="all">all</option>
+            {allTypes?.map((type) => (
+              <option key={type.id} value={type.name}>
+                {type.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className={styles.divOrdenAZ}>
+          <label className={styles.fontFiltros}>Orden alfabetico: </label>
+          <select
+            className={styles.selectOrderAz}
+            onChange={(e) => handleSort(e)}
+          >
+            {/* <option value="pokedex">pokedex</option> */}
+            <option value="asc">a-z</option>
+            <option value="dsc">z-a</option>
+          </select>
+        </div>
+        <div className={styles.divCreacion}>
+          <label className={styles.fontFiltros}>Tipo de creacion: </label>
+          <select onChange={(e) => handlerFilterByCreated(e)}>
+            <option value="all">all</option>
+            <option value="existing">existing</option>
+            <option value="created">created</option>
+          </select>
+        </div>
+        <div className={styles.divOrdenAtaque}>
+          <label className={styles.fontFiltros}>Tipo de fuerza: </label>
+          <select onChange={(e) => handlerFilterByStrength(e)}>
+            <option value="default">default</option>
+            <option value="stronger">stronger</option>
+            <option value="weaker">weaker</option>
+          </select>
+        </div>
+      </div>
+
+      {!loading ? (
+        allPokemons.length ? (
+          pokemonsActuales.map((ele) => {
+            return (
+              <div key={ele.id}>
+                {/* <h5>Tipo de pokemon: </h5> */}
+                <Link to={`/pokemons/${ele.id}`}>
+                  <Card
+                    name={ele.name}
+                    img={
+                      ele.img ? (
+                        ele.img
+                      ) : (
+                        <img
+                          src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
+                          alt="pokemon"
+                        />
+                      )
+                    }
+                    type={ele.type}
+                  />
+                </Link>
+              </div>
+            );
+          })
+        ) : (
+          <Error404 />
+        )
+      ) : (
+        <Loading />
+      )}
+      {/* <div class={styles.loader2}></div> */}
+      <div className={styles.paginadoHome}>
+        <Paginado
+          pokemonsPorPagina={pokemonsPorPagina}
+          allPokemons={allPokemons.length}
+          paginado={paginado}
+        />
+      </div>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import React from "react";
-import { PokemonCreate } from "./components/Pokemon Create/PokemonCreate";
-import PokemonDetail from "./components/Pokememon Detail/PokemonDetail";
 
 //Componentes
+import { PokemonCreate } from "./components/Pokemon Create/PokemonCreate";
+import PokemonDetail from "./components/Pokememon Detail/PokemonDetail";
 import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 

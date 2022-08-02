@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { getTypes, postPokemon, cleanCache } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import getPokemons from "../../actions";

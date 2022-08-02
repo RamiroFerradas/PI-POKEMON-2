@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPokemonDetail,
@@ -26,7 +26,7 @@ export default function DetailsPokemonPage(props) {
   }, [dispatch, id]);
 
   const pokemonInfo = useSelector((state) => state.detail);
-  const loading = useSelector((state) => state.loading);
+  // const loading = useSelector((state) => state.loading);
 
   let cleanAndBack = () => {
     navigate("/home");

@@ -14,11 +14,14 @@ export default function Error404() {
 
   return (
     <div className="contenedor404">
-      <button onClick={(e) => handleClick(e)} className={styles.buttonError}>
-        {"<-"} BACK
-      </button>
-
-      <img src={error404} alt="" className={styles.imgError} />
+      <div>
+        <img src={error404} alt="" className={styles.imgError} />
+      </div>
+      <div>
+        <button onClick={(e) => handleClick(e)} className={styles.buttonError}>
+          {"<-"} BACK
+        </button>
+      </div>
     </div>
   );
 }

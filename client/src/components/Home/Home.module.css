@@ -19,13 +19,18 @@
   /* text-decoration: none; */
 }
 .titulo {
+  font-size: 2rem;
+  letter-spacing: 1rem;
   text-decoration: none;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #ffffffac;
+  font-family: "Pokemon Solid", sans-serif;
+  color: #f8f800ac;
+  /* font-size: ; */
+  /* height: 10rem; */
   /* text-transform: uppercase; */
   /* font-style: normal; */
   /* font-weight: 400; */
   /* border: solid 1px #d2d2d4ac; */
+  /* font-family: ; */
 }
 .divCrear {
   grid-area: 1 / 8 / 2 / 9;
@@ -294,8 +299,8 @@ select {
 }
 
 .paginadoHome {
-  margin-top: 38.5%;
-  margin-left: 45%;
+  margin-top: 37.7%;
+  margin-left: 40%;
 }
 
 .fontFiltros {
