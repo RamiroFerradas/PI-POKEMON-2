@@ -1,26 +1,11 @@
 import React from "react";
 import load from "../../assets/img/loading3.gif";
 import styles from "../Loading/Loading.module.css";
-// import { useNavigate } from "react-router-dom";
-// import { cleanCache } from "../../actions";
-// import { useDispatch } from "react-redux";
-export default function Loading() {
-  // let navigate = useNavigate();
-  // const dispatch = useDispatch();
 
-  // let cleanAndBack = () => {
-  //   navigate("/home");
-  //   dispatch(cleanCache());
-  // };
+export default function Loading() {
   return (
     <div className={styles.contenedorLoading}>
       <img src={load} alt="loading" />
-      {/* <div>
-        {" "}
-        <button onClick={cleanAndBack} className="buttonBack">
-          {"<-"} BACK
-        </button>
-      </div> */}
     </div>
   );
 }

@@ -29,7 +29,6 @@ export function PokemonCreate() {
     speed: "",
     type: [],
   });
-  // const [disabledButton, setDisabledButton] = useState(true);
 
   let cleanAndBack = () => {
     navigate("/home");

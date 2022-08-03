@@ -6,7 +6,6 @@ import { getTypes } from "../../actions/index";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import Loading from "../Loading/Loading";
-
 import SearchBar from "../SearchBar/SearchBar";
 import {
   filterByCreated,
@@ -22,34 +21,33 @@ export default function Home() {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.typesList);
   const allPokemons = useSelector((state) => state.pokemons);
-  // const prueba = useSelector((state) => state.pokemons);
   const [order, setOrder] = useState("");
 
+  //paginado
   const [paginaActual, setPaginaActual] = useState(1);
-  const [pokemonsPorPagina, setPokemonsPorPagina] = useState(12);
-
+  const [pokemonsPorPagina] = useState(12);
   const indiceUltimoPokemon = paginaActual * pokemonsPorPagina;
   const indicePrimerPokemon = indiceUltimoPokemon - pokemonsPorPagina;
   const loading = useSelector((state) => state.loading);
-
   const pokemonsActuales = allPokemons.slice(
     indicePrimerPokemon,
     indiceUltimoPokemon
   );
-
   const paginado = (numeroPagina) => {
     setPaginaActual(numeroPagina);
   };
+  //
 
   useEffect(() => {
     dispatch(getTypes());
     dispatch(getPokemons());
   }, [dispatch]);
 
-  function handleClick(e) {
+  //handlers
+  const handleClick = (e) => {
     e.preventDefault();
     dispatch(getPokemons());
-  }
+  };
   const handlerFilterByCreated = (e) => {
     e.preventDefault();
     dispatch(filterByCreated(e.target.value));
@@ -98,8 +96,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* <div className={styles.loader}></div> */}
-
       <div className={styles.parentFiltros}>
         <div className={styles.divTipos}>
           <label className={styles.fontFiltros}>Tipo de pokemon: </label>
@@ -147,7 +143,6 @@ export default function Home() {
           pokemonsActuales.map((ele) => {
             return (
               <div key={ele.id}>
-                {/* <h5>Tipo de pokemon: </h5> */}
                 <Link to={`/pokemons/${ele.id}`}>
                   <Card
                     name={ele.name}
@@ -173,12 +168,12 @@ export default function Home() {
       ) : (
         <Loading />
       )}
-      {/* <div class={styles.loader2}></div> */}
       <div className={styles.paginadoHome}>
         <Paginado
           pokemonsPorPagina={pokemonsPorPagina}
           allPokemons={allPokemons.length}
           paginado={paginado}
+          paginaActual={paginaActual}
         />
       </div>
     </div>

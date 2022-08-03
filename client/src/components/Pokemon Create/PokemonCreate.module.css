@@ -122,7 +122,8 @@
 .errors {
   color: red;
   font-size: 0.8rem;
-  font-family: arial;
+  /* font-family: arial; */
+  font-family: monospace;
   min-height: 5rem;
 }
 

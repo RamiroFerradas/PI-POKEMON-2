@@ -4,8 +4,8 @@
   border-radius: 30px;
   background: #212121;
   box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
-
-  background-color: #212121d8;
+  backdrop-filter: blur(5px);
+  background-color: #212121ad;
   border-radius: 1rem;
   border: #212121 0.2rem solid;
   transition: all 0.4s ease-in;
@@ -19,6 +19,9 @@
   margin-right: 20px;
   /* padding-right: px; */
   padding-bottom: 30px;
+  -webkit-box-shadow: 11px 10px 29px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 11px 10px 29px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 11px 10px 29px -3px rgba(0, 0, 0, 0.75);
 }
 
 .cardHome:hover {

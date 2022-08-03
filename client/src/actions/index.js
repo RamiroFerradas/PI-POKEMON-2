@@ -187,9 +187,15 @@ export function getNamePokemons(name) {
 }
 
 export function postPokemon(payload) {
-  return async function (dispatch) {
-    const json = await axios.post(`http://localhost:3001/pokemons`, payload);
-    return json;
+  return function (dispatch) {
+    axios
+      .post(`http://localhost:3001/pokemons`, payload)
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        console.log(error.message, "Error en el post");
+      });
   };
 }
 

@@ -137,10 +137,13 @@ export default function pokemonReducer(state = initialState, action) {
         loading: false,
       };
 
-    case "POST_POKEMON":
-      return {
-        ...state,
-      };
+    // case "POST_POKEMON":
+    //   console.log("soy el reducer");
+    //   return {
+    //     ...state,
+    //     pokemons: action.payload,
+    //   };
+
     case "DELETE_POKEMON":
       return {
         ...state,

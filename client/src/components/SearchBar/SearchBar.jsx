@@ -6,10 +6,6 @@ import { setLoading } from "../../actions";
 // import { useNavigate } from "react-router-dom";
 import styles from "../SearchBar/SearchBar.module.css";
 
-// import setPaginaActual
-
-// import useHistory from "react-router-dom";
-
 export default function SearchBar({ setPaginaActual }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");

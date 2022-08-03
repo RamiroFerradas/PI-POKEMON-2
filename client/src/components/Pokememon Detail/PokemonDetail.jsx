@@ -26,7 +26,7 @@ export default function DetailsPokemonPage(props) {
   }, [dispatch, id]);
 
   const pokemonInfo = useSelector((state) => state.detail);
-  // const loading = useSelector((state) => state.loading);
+  const loading = useSelector((state) => state.loading);
 
   let cleanAndBack = () => {
     navigate("/home");
@@ -45,7 +45,7 @@ export default function DetailsPokemonPage(props) {
     pokemonInfo.img ? (
       <div>
         {
-          <div>
+          <div className={styles.contenedorDetail}>
             <div className={styles.detailCard}>
               <img
                 src={pokemonInfo.img}
