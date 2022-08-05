@@ -80,12 +80,6 @@ export default function DetailsPokemonPage(props) {
                     Weight: {pokemonInfo.weight} kg
                   </p>
                 </div>
-                <div>
-                  <p className={styles.fontDetail}>
-                    {" "}
-                    CREADO POR: {pokemonInfo.creadoPor}
-                  </p>
-                </div>
 
                 <div>
                   <p className={styles.fontDetail}>

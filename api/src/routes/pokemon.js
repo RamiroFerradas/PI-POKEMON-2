@@ -61,9 +61,15 @@ async function getOnePokemonId(id) {
         attributes: ["name"],
       },
     });
-    console.log("ID DE POKEMON CREADO");
 
-    return data;
+    // const mapeados = data.map((ele) => {
+    //   return
+    // })
+
+    console.log(data, "ID DE POKEMON CREADO");
+    let arr = [];
+    arr.push(data);
+    return arr;
   } else {
     //traigo pokemon desde la api
     const { data } = await axios.get(
@@ -111,13 +117,6 @@ async function getConcatenado(name) {
     return getFinal;
   }
   // return getFinal;
-}
-
-async function searchPoke(name) {
-  const { data } = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/${name}/`
-  );
-  return crearPokemon(data);
 }
 
 async function deletePokemon(id) {
