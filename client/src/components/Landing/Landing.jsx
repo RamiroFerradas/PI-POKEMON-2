@@ -5,13 +5,6 @@ import styles from "../Landing/Landing.module.css";
 
 function Landing() {
   return (
-    // <div className={styles.contenedorInicio}>
-    //   <div className={styles.contenedorButton}>
-    //     <Link to={"/home"}>
-    //       <button className={styles.btn}>INGRESAR</button>
-    //     </Link>
-    //   </div>
-    // </div>
     <div className={styles.contenedorInicio}>
       <div className={styles.contenedorButton}>
         <Link to={"/home"}>

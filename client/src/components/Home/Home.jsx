@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getNamePokemonsGlobal, getTypes } from "../../actions/index";
+import { getTypes } from "../../actions/index";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import Loading from "../Loading/Loading";
@@ -56,6 +56,7 @@ export default function Home() {
     e.preventDefault();
     // dispatch(getPokemons());
     dispatch(recargarPokemons());
+    setPaginaActual(() => 1);
   };
   const handlerFilterByCreated = (e) => {
     e.preventDefault();

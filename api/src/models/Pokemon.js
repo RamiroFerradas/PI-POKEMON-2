@@ -49,10 +49,6 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-      creadoPor: {
-        type: DataTypes.STRING,
-        defaultValue: "Ramiro",
-      },
     },
     {
       createdAt: false,
