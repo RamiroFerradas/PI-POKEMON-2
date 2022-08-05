@@ -169,12 +169,17 @@ export function orderByName(payload) {
     payload,
   };
 }
+export function orderByAttack(payload) {
+  return {
+    type: "ORDER_BY_ATTACK",
+    payload,
+  };
+}
 
 export function getNamePokemons(name) {
   return async function (dispatch) {
     try {
-      var json = await axios(`http://localhost:3001/pokemons?name=${name}`);
-
+      let json = await axios(`http://localhost:3001/pokemons/${name}`);
       return dispatch({
         type: "GET_NAME_POKEMONS",
         payload: json.data,
@@ -187,34 +192,31 @@ export function getNamePokemons(name) {
 }
 
 export function postPokemon(payload) {
-  return function (dispatch) {
-    axios
-      .post(`http://localhost:3001/pokemons`, payload)
-      .then((data) => {
-        return data;
-      })
-      .catch((error) => {
-        console.log(error.message, "Error en el post");
-      });
+  return async function (dispatch) {
+    try {
+      let json = axios.post(`http://localhost:3001/pokemons`, payload);
+      return json;
+    } catch (error) {
+      console.log(error.message, "Error en el post");
+    }
   };
 }
 
 export function getPokemonDetail(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      let json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      console.log(json);
       return dispatch({
         type: "GET_POKEMONS_DETAILS",
-        payload: json.data,
+        payload: json.data[0],
       });
     } catch (error) {
       console.log("error", error);
-      // return <button>Regresar</button>;
       return alert("No existe el id del pokemon solicitado");
     }
   };
 }
-
 export function cleanCache() {
   return {
     type: "CLEAN_CACHE",
@@ -232,8 +234,34 @@ export function err404() {
     type: "ERROR_404",
   };
 }
+
 export function setLoading() {
   return {
     type: "SET_LOADING",
+  };
+}
+
+// export function setCurrentPage(number) {
+//   console.log(number, "holaaa");
+//   return function (dispatch) {
+//     return dispatch({
+//       type: "SET_CURRENT_PAGE",
+//       payload: number,
+//     });
+//   };
+// }
+
+export function getNamePokemonsGlobal(name) {
+  return function (dispatch) {
+    return dispatch({
+      type: "GET_POKEMON_NAME_GLOBAL",
+      payload: name,
+    });
+  };
+}
+
+export function recargarPokemons() {
+  return {
+    type: "RECARGAR_POKEMONS",
   };
 }

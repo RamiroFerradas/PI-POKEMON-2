@@ -3,8 +3,10 @@ const initialState = {
   allPokemons: [],
   typesList: [],
   detail: {},
-  page: 1,
+  search: [],
   loading: true,
+  buscarApi: false,
+  // paginaActual: 1,
 };
 
 export default function pokemonReducer(state = initialState, action) {
@@ -15,12 +17,14 @@ export default function pokemonReducer(state = initialState, action) {
         pokemons: action.payload,
         allPokemons: action.payload,
         loading: false,
+
         // detail: action.payload,
       };
     case "GET_TYPES":
       return {
         ...state,
         typesList: action.payload,
+
         // loading: false,
       };
     case "FILTER_BY_CREATED":
@@ -84,19 +88,18 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: arrayOrdenamiento,
       };
+
     case "FILTER_BY_STRENGTH":
-      const currentPokemons2 = [...state.pokemons];
+      let currentPokemons2 = [...state.pokemons];
       if (action.payload === "default") {
-        currentPokemons2.sort((obj1, obj2) => {
-          if (obj1.id < obj2.id) {
-            return -1;
-          } else {
-            return 1;
-          }
-        });
+        return {
+          ...state,
+          pokemons: state.allPokemons,
+        };
       }
       if (action.payload === "stronger") {
-        currentPokemons2.sort((obj1, obj2) => {
+        const currentPokemons3 = [...state.allPokemons];
+        currentPokemons3.sort((obj1, obj2) => {
           if (obj1.attack < obj2.attack) {
             return 1;
           } else if (obj1.attack > obj2.attack) {
@@ -105,9 +108,11 @@ export default function pokemonReducer(state = initialState, action) {
             return 0;
           }
         });
+        currentPokemons2 = currentPokemons3;
       }
       if (action.payload === "weaker") {
-        currentPokemons2.sort((obj1, obj2) => {
+        let currentPokemons3 = [...state.allPokemons];
+        currentPokemons3.sort((obj1, obj2) => {
           if (obj1.attack < obj2.attack) {
             return -1;
           } else if (obj1.attack > obj2.attack) {
@@ -116,33 +121,29 @@ export default function pokemonReducer(state = initialState, action) {
             return 0;
           }
         });
+        currentPokemons2 = currentPokemons3;
+      }
+      if (action.payload === "5 stronger") {
+        currentPokemons2.sort((obj1, obj2) => {
+          if (obj1.attack < obj2.attack) {
+            return 1;
+          } else if (obj1.attack > obj2.attack) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        let a = currentPokemons2.slice(0, 5);
+
+        return {
+          ...state,
+          pokemons: a,
+        };
       }
       return {
         ...state,
         pokemons: currentPokemons2,
       };
-    case "GET_NAME_POKEMONS":
-      if (action.payload.msj) {
-        let error = { error: "No se encontró el pokémon" };
-        return {
-          ...state,
-          pokemon: error,
-          page: 1,
-          loading: false,
-        };
-      }
-      return {
-        ...state,
-        pokemons: action.payload,
-        loading: false,
-      };
-
-    // case "POST_POKEMON":
-    //   console.log("soy el reducer");
-    //   return {
-    //     ...state,
-    //     pokemons: action.payload,
-    //   };
 
     case "DELETE_POKEMON":
       return {
@@ -152,27 +153,27 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         detail: action.payload,
-        // loading: true,
-        // loading: false,
       };
 
     case "CLEAN_CACHE":
       return {
         ...state,
-        // allPokemons: [],
-        pokemons: [],
+        // pokemons: state.allPokemons,
+        // pokemons: [],
         detail: {},
-        page: 1,
         loading: true,
       };
 
     case "CLEAN_CACHE_ALL":
       return {
         ...state,
+        // pokemons: state.allPokemons,
+        // pokemons: [],
+        detail: {},
+        loading: true,
         pokemons: [],
-        page: 1,
-        // page: 1,
       };
+
     case "ERROR_404":
       return {
         ...state,
@@ -192,6 +193,54 @@ export default function pokemonReducer(state = initialState, action) {
           loading: true,
         };
       }
+
+    // case "SET_CURRENT_PAGE":
+    //   console.log(action.type, action.payload);
+
+    //   return {
+    //     ...state,
+    //     page: action.number,
+    //   };
+
+    case "GET_POKEMON_NAME_GLOBAL":
+      const unPoke = state.allPokemons;
+      const filter = unPoke.filter((ele) =>
+        ele.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      // console.log(unPoke);
+      if (filter === 0) {
+        return {
+          ...state,
+          buscarApi: true,
+        };
+      }
+
+      return {
+        ...state,
+        pokemons: filter,
+        loading: false,
+      };
+    case "GET_NAME_POKEMONS":
+      if (action.payload.msj) {
+        let error = { error: "No se encontró el pokémon" };
+        return {
+          ...state,
+          pokemon: error,
+          loading: false,
+          flag: false,
+        };
+      }
+      return {
+        ...state,
+        pokemons: action.payload,
+        loading: false,
+      };
+
+    case "RECARGAR_POKEMONS":
+      return {
+        ...state,
+        pokemons: state.allPokemons,
+      };
 
     default:
       return state;

@@ -86,4 +86,5 @@ router.delete("/pokemons/:id", async (req, res, next) => {
     next(error);
   }
 });
+
 module.exports = router;

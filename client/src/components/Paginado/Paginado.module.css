@@ -1,3 +1,11 @@
+body {
+  /* height: 100%; */
+  /* max-height: 5rem; */
+}
+
+.buttonPaginado .buttonPaginado2 {
+}
+
 .buttonPaginado {
   cursor: pointer;
   position: relative;
@@ -27,9 +35,10 @@
   border-bottom: 1px solid #6220fb;
 }
 .contenedorPaginado {
-  width: 100%;
+  /* width: 100%;
   margin-top: 50px;
-  margin-right: 20rem;
+  margin-right: 20rem; */
+  position: absolute;
 }
 
 .buttonPaginado2 {

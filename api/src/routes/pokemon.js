@@ -3,13 +3,11 @@ const axios = require("axios");
 const { Pokemon, Tipo } = require("../db");
 const e = require("express");
 const router = Router();
-// const { Op } = require("sequelize");
 
 function crearPokemon(d) {
   return {
     name: d.name[0].toUpperCase() + d.name.slice(1),
     id: d.id,
-    // img: d.sprites.other.dream_world.front_default,
     img: d.sprites.other.home.front_default,
     hp: d.stats[0].base_stat,
     attack: d.stats[1].base_stat,
@@ -18,7 +16,6 @@ function crearPokemon(d) {
     height: d.height,
     speed: d.stats[5].base_stat,
     type: d.types.map((el) => el.type.name), //porque es un array de objetos "types"
-    // console.log("uso el modelo crearPokemon() del back");
   };
 }
 
@@ -33,7 +30,6 @@ async function getPokemonDB() {
     return p.dataValues;
   });
   console.log("LISTADO POKEMONS DB");
-  // console.log("hola", mapeados);
   return mapeados;
 }
 
@@ -41,18 +37,18 @@ async function getPokemon() {
   const { data } = await axios.get(
     "https://pokeapi.co/api/v2/pokemon/?limit=40"
   );
-  const resultados = data.results;
   //accedo a la url donde tengo todo el detalle de cada poke:
   const promesa = await Promise.all(
-    resultados.map((ele) => axios.get(ele.url))
+    data.results.map((ele) => axios.get(ele.url))
   );
   //limpio la info que me trae axios y obtengo solo la data:
   const infoLimpia = promesa.map((ele) => ele.data);
   const arrayResultado = [];
-  //info limpioa de cada uno me lo guardo en mi array:
+  //info limpia de cada uno me lo guardo en mi array:
   infoLimpia.forEach((ele) => arrayResultado.push(crearPokemon(ele)));
 
   console.log("INFO DE TODOS LOS POKEMONS ");
+
   return arrayResultado;
 }
 
@@ -73,15 +69,17 @@ async function getOnePokemonId(id) {
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${id}/`
     );
+    let arr = [];
     console.log("ID DE POKEMON EN API");
-
-    return crearPokemon(data);
+    arr.push(crearPokemon(data));
+    return arr;
   }
 }
 
 async function getConcatenado(name) {
   const getDb = await getPokemonDB();
   const getApi = await getPokemon();
+  //hago el map para poder mostrar type en lugar de tipos
   const mapeo = getDb.map((ele) => {
     return {
       name: ele.name,
@@ -95,6 +93,7 @@ async function getConcatenado(name) {
       speed: ele.speed,
       createdInDb: ele.createdInDb,
       type: ele.tipos.map((ele) => ele.name),
+      creadoPor: ele.creadoPor,
     };
   });
 
@@ -111,16 +110,22 @@ async function getConcatenado(name) {
   } else {
     return getFinal;
   }
+  // return getFinal;
+}
+
+async function searchPoke(name) {
+  const { data } = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/${name}/`
+  );
+  return crearPokemon(data);
 }
 
 async function deletePokemon(id) {
-  let prueba = await Pokemon.destroy({
+  await Pokemon.destroy({
     where: {
       id: id,
     },
   });
-
-  return prueba;
 }
 
 module.exports = {

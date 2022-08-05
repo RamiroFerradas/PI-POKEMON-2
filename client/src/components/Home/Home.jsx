@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import getPokemons from "../../actions/index";
-import { getTypes } from "../../actions/index";
+import { getNamePokemonsGlobal, getTypes } from "../../actions/index";
 import Card from "../Card/Card";
 import Paginado from "../Paginado/Paginado";
 import Loading from "../Loading/Loading";
 import SearchBar from "../SearchBar/SearchBar";
+import Error404 from "../Error 404/Error404";
+import styles from "../Home/Home.module.css";
+import getPokemons from "../../actions/index";
+
+//actions
 import {
   filterByCreated,
   filterByTypes,
   orderByName,
   filterByStrength,
+  recargarPokemons,
 } from "../../actions/index";
-
-import Error404 from "../Error 404/Error404";
-import styles from "../Home/Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ export default function Home() {
 
   //paginado
   const [paginaActual, setPaginaActual] = useState(1);
+  // const paginaActual = useSelector((state) => state.paginaActual);
   const [pokemonsPorPagina] = useState(12);
   const indiceUltimoPokemon = paginaActual * pokemonsPorPagina;
   const indicePrimerPokemon = indiceUltimoPokemon - pokemonsPorPagina;
@@ -33,10 +36,15 @@ export default function Home() {
     indicePrimerPokemon,
     indiceUltimoPokemon
   );
+
+  // const setPaginaActual = (number) => {
+  //   dispatch(setPage(number));
+  // };
+
   const paginado = (numeroPagina) => {
     setPaginaActual(numeroPagina);
   };
-  //
+  //paginado
 
   useEffect(() => {
     dispatch(getTypes());
@@ -46,7 +54,8 @@ export default function Home() {
   //handlers
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(getPokemons());
+    // dispatch(getPokemons());
+    dispatch(recargarPokemons());
   };
   const handlerFilterByCreated = (e) => {
     e.preventDefault();
@@ -64,12 +73,14 @@ export default function Home() {
     setPaginaActual(() => 1);
   };
 
-  function handleSort(e) {
+  const handleSort = (e) => {
     e.preventDefault(e);
     dispatch(orderByName(e.target.value));
+    // console.log(e.target);
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
-  }
+  };
+
   return (
     <div className={styles.header}>
       <div className={styles.parent}>
@@ -101,7 +112,7 @@ export default function Home() {
           <label className={styles.fontFiltros}>Tipo de pokemon: </label>
 
           <select onChange={(e) => handlerFilterByTypes(e)}>
-            <option value="all">all</option>
+            <option value="all">todos</option>
             {allTypes?.map((type) => (
               <option key={type.id} value={type.name}>
                 {type.name}
@@ -120,20 +131,22 @@ export default function Home() {
             <option value="dsc">z-a</option>
           </select>
         </div>
+
         <div className={styles.divCreacion}>
           <label className={styles.fontFiltros}>Tipo de creacion: </label>
           <select onChange={(e) => handlerFilterByCreated(e)}>
-            <option value="all">all</option>
-            <option value="existing">existing</option>
-            <option value="created">created</option>
+            <option value="all">todos</option>
+            <option value="existing">existente</option>
+            <option value="created">creado</option>
           </select>
         </div>
         <div className={styles.divOrdenAtaque}>
           <label className={styles.fontFiltros}>Tipo de fuerza: </label>
           <select onChange={(e) => handlerFilterByStrength(e)}>
-            <option value="default">default</option>
-            <option value="stronger">stronger</option>
-            <option value="weaker">weaker</option>
+            <option value="default">por defecto</option>
+            <option value="stronger">fuerte</option>
+            <option value="weaker">debil</option>
+            <option value="5 stronger">5 MAS FUERTES</option>
           </select>
         </div>
       </div>
@@ -163,7 +176,7 @@ export default function Home() {
             );
           })
         ) : (
-          <Error404 />
+          <Loading />
         )
       ) : (
         <Loading />

@@ -240,6 +240,7 @@
   padding-bottom: 0.6rem;
   background-image: linear-gradient(90deg, #1c1c1c, #6220fb83);
   border-top: 3px solid #1e1e1f83;
+  position: relative;
 }
 
 .divTipos {
@@ -299,8 +300,9 @@ select {
 }
 
 .paginadoHome {
-  margin-top: 37.7%;
-  margin-left: 43%;
+  /* margin-top: 37.7%; */
+  margin: 37.7% 0;
+  margin-left: 45%;
   width: 50%;
 }
 

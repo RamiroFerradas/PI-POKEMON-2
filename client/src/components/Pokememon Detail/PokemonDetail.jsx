@@ -1,11 +1,9 @@
 import React from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPokemonDetail,
   deletePokemon,
   cleanCache,
-  cleanCacheAll,
 } from "../../actions/index";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -23,24 +21,26 @@ export default function DetailsPokemonPage(props) {
   useEffect(() => {
     // dispatch(clearDetails());
     dispatch(getPokemonDetail(id));
+    dispatch(cleanCache());
   }, [dispatch, id]);
 
   const pokemonInfo = useSelector((state) => state.detail);
-  const loading = useSelector((state) => state.loading);
+  // const loading = useSelector((state) => state.loading);
 
   let cleanAndBack = () => {
     navigate("/home");
     dispatch(cleanCache());
+    // dispatch(getNamePokemonsGlobal());
   };
 
   let handleDelete = () => {
     navigate("/home");
     alert("¡Pokémon eliminado!");
     dispatch(cleanCache());
-    dispatch(cleanCacheAll());
+    // dispatch(cleanCacheAll());
     dispatch(deletePokemon(id));
   };
-  console.log(pokemonInfo, "soy pokemonInfo");
+  console.log(pokemonInfo);
   return pokemon ? (
     pokemonInfo.img ? (
       <div>
@@ -82,6 +82,13 @@ export default function DetailsPokemonPage(props) {
                 </div>
                 <div>
                   <p className={styles.fontDetail}>
+                    {" "}
+                    CREADO POR: {pokemonInfo.creadoPor}
+                  </p>
+                </div>
+
+                <div>
+                  <p className={styles.fontDetail}>
                     Type:{" "}
                     {pokemonInfo.createdInDb
                       ? pokemonInfo.tipos.map((ele) => ele.name).join(", ")
@@ -91,7 +98,10 @@ export default function DetailsPokemonPage(props) {
               </div>
             </div>
             <div>
-              <button onClick={cleanAndBack} className={styles.buttonBack}>
+              <button
+                onClick={(e) => cleanAndBack(e)}
+                className={styles.buttonBack}
+              >
                 {"<-"} VOLVER
               </button>
             </div>
@@ -99,14 +109,7 @@ export default function DetailsPokemonPage(props) {
         }
         {pokemonInfo.createdInDb && (
           <div className="contenedorDelete">
-            {/* <button
-              onClick={() => handleDelete()}
-              className={styles.buttonDelete}
-            >
-              BORRAR
-            </button> */}
             <button
-              class="noselect"
               onClick={() => handleDelete()}
               className={styles.buttonDelete}
             >

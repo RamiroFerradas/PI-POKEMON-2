@@ -21,10 +21,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      // force: {
-      //   type: DataTypes.STRING,
-      //   allowNull: true,
-      // },
       defense: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -52,7 +48,10 @@ module.exports = (sequelize) => {
       createdInDb: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
-        allowNull: false,
+      },
+      creadoPor: {
+        type: DataTypes.STRING,
+        defaultValue: "Ramiro",
       },
     },
     {
