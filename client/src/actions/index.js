@@ -117,7 +117,7 @@ import axios from "axios";
 
 export default function getPokemons() {
   return async function (dispatch) {
-    var json = await axios("http://localhost:3001/pokemons", {});
+    var json = await axios("/pokemons", {});
     return dispatch({
       type: "GET_POKEMONS",
       payload: json.data,
@@ -126,7 +126,7 @@ export default function getPokemons() {
 }
 export function getTypes() {
   return async function (dispatch) {
-    var json = await axios("http://localhost:3001/types", {});
+    var json = await axios("/types", {});
     return dispatch({
       type: "GET_TYPES",
       payload: json.data,
@@ -135,7 +135,7 @@ export function getTypes() {
 }
 export function deletePokemon(id) {
   return async function (dispatch) {
-    const json = await axios.delete(`http://localhost:3001/pokemons/${id}`);
+    const json = await axios.delete(`/pokemons/${id}`);
     return dispatch({
       type: "DELETE_POKEMON",
       payload: json.data,
@@ -179,7 +179,7 @@ export function orderByAttack(payload) {
 export function getNamePokemons(name) {
   return async function (dispatch) {
     try {
-      let json = await axios(`http://localhost:3001/pokemons/${name}`);
+      let json = await axios(`pokemons/${name}`);
       return dispatch({
         type: "GET_NAME_POKEMONS",
         payload: json.data,
@@ -194,7 +194,7 @@ export function getNamePokemons(name) {
 export function postPokemon(payload) {
   return async function (dispatch) {
     try {
-      let json = axios.post(`http://localhost:3001/pokemons`, payload);
+      let json = axios.post(`/pokemons`, payload);
       return json;
     } catch (error) {
       console.log(error.message, "Error en el post");
@@ -205,7 +205,7 @@ export function postPokemon(payload) {
 export function getPokemonDetail(id) {
   return async function (dispatch) {
     try {
-      let json = await axios.get(`http://localhost:3001/pokemons/${id}`);
+      let json = await axios.get(`/pokemons/${id}`);
       console.log(json);
       return dispatch({
         type: "GET_POKEMONS_DETAILS",
