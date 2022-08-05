@@ -99,7 +99,6 @@ async function getConcatenado(name) {
       speed: ele.speed,
       createdInDb: ele.createdInDb,
       type: ele.tipos.map((ele) => ele.name),
-      creadoPor: ele.creadoPor,
     };
   });
 
