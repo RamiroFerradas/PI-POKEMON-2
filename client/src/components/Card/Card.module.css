@@ -1,6 +1,6 @@
 .cardHome {
-  width: 20rem;
-  height: 23rem;
+  width: 14.4rem;
+  height: 17rem;
   border-radius: 30px;
   background: #212121;
   box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
@@ -31,9 +31,9 @@
 }
 
 .imgCard {
-  width: 20rem;
-  height: 18rem;
-  margin-right: 60px;
+  width: 14rem;
+  height: 11rem;
+  /* margin-right: 70px; */
 }
 /* .cardHome {
   float: left;
@@ -77,6 +77,14 @@
   box-shadow: 7px 11px 24px 0px rgba(0, 0, 0, 0.75);
 } */
 
+.detallesCard {
+  font-family: monospace;
+  /* margin-left: 11rem; */
+  margin-top: 1rem;
+  /* size: 3rem; */
+  font-size: 16px;
+  color: #e2e2c7;
+}
 /* From uiverse.io by @bhaveshxrawat */
 /* .cardHome {
   width: 190px;
@@ -136,12 +144,3 @@
   background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
   animation: rotBGimg 3.5s linear infinite;
 } */
-
-.detallesCard {
-  font-family: monospace;
-  /* margin-left: 11rem; */
-  margin-top: 1rem;
-  /* size: 3rem; */
-  font-size: 20px;
-  color: #e2e2c7;
-}

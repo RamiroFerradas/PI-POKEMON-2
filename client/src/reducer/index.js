@@ -194,6 +194,12 @@ export default function pokemonReducer(state = initialState, action) {
         };
       }
 
+    case "BACK":
+      return {
+        ...state,
+        pokemons: [state.allPokemons],
+      };
+
     // case "SET_CURRENT_PAGE":
     //   console.log(action.type, action.payload);
 

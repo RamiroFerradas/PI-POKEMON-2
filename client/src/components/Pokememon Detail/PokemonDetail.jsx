@@ -4,6 +4,7 @@ import {
   getPokemonDetail,
   deletePokemon,
   cleanCache,
+  back,
 } from "../../actions/index";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -29,7 +30,8 @@ export default function DetailsPokemonPage(props) {
 
   let cleanAndBack = () => {
     navigate("/home");
-    dispatch(cleanCache());
+    // dispatch(cleanCache());
+    dispatch(back());
     // dispatch(getNamePokemonsGlobal());
   };
 
@@ -40,7 +42,8 @@ export default function DetailsPokemonPage(props) {
     // dispatch(cleanCacheAll());
     dispatch(deletePokemon(id));
   };
-  console.log(pokemonInfo);
+  // console.log(pokemonInfo);
+
   return pokemon ? (
     pokemonInfo.img ? (
       <div>

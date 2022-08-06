@@ -82,114 +82,120 @@ export default function Home() {
     setOrder(`Ordenado${e.target.value}`);
   };
 
-  return (
-    <div className={styles.header}>
-      <div className={styles.parent}>
-        <div className={styles.divTitulo}>
-          <h1 className={styles.titulo}>POKEAPP</h1>
+  return !loading ? (
+    pokemonsActuales.length ? (
+      <div className={styles.header}>
+        <div className={styles.parent}>
+          <div className={styles.divTitulo}>
+            <h1 className={styles.titulo}>POKEAPP</h1>
+          </div>
+          <div className={styles.divCrear}>
+            <Link to="/agregar">
+              <button className={styles.buttonCrear}>CREAR POKEMON</button>
+            </Link>
+          </div>
+          <div className={styles.divCargar}>
+            <button
+              className={styles.buttonCarga}
+              onClick={(e) => {
+                handleClick(e);
+              }}
+            >
+              recargar pokemons
+            </button>
+          </div>
+          <div className={styles.divSearchBar}>
+            <SearchBar setPaginaActual={setPaginaActual} />
+          </div>
         </div>
-        <div className={styles.divCrear}>
-          <Link to="/agregar">
-            <button className={styles.buttonCrear}>CREAR POKEMON</button>
-          </Link>
+
+        <div className={styles.parentFiltros}>
+          <div className={styles.divTipos}>
+            <label className={styles.fontFiltros}>Tipo de pokemon: </label>
+
+            <select onChange={(e) => handlerFilterByTypes(e)}>
+              <option value="all">todos</option>
+              {allTypes?.map((type) => (
+                <option key={type.id} value={type.name}>
+                  {type.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.divOrdenAZ}>
+            <label className={styles.fontFiltros}>Orden alfabetico: </label>
+            <select
+              className={styles.selectOrderAz}
+              onChange={(e) => handleSort(e)}
+            >
+              {/* <option value="pokedex">pokedex</option> */}
+              <option value="asc">a-z</option>
+              <option value="dsc">z-a</option>
+            </select>
+          </div>
+
+          <div className={styles.divCreacion}>
+            <label className={styles.fontFiltros}>Tipo de creacion: </label>
+            <select onChange={(e) => handlerFilterByCreated(e)}>
+              <option value="all">todos</option>
+              <option value="existing">existente</option>
+              <option value="created">creado</option>
+            </select>
+          </div>
+          <div className={styles.divOrdenAtaque}>
+            <label className={styles.fontFiltros}>Tipo de fuerza: </label>
+            <select onChange={(e) => handlerFilterByStrength(e)}>
+              <option value="default">por defecto</option>
+              <option value="stronger">fuerte</option>
+              <option value="weaker">debil</option>
+              <option value="5 stronger">5 MAS FUERTES</option>
+            </select>
+          </div>
         </div>
-        <div className={styles.divCargar}>
-          <button
-            className={styles.buttonCarga}
-            onClick={(e) => {
-              handleClick(e);
-            }}
-          >
-            recargar pokemons
-          </button>
-        </div>
-        <div className={styles.divSearchBar}>
-          <SearchBar setPaginaActual={setPaginaActual} />
+
+        {allPokemons.length
+          ? pokemonsActuales.map((ele) => {
+              return (
+                <div key={ele.id}>
+                  <Link to={`/pokemons/${ele.id}`}>
+                    <Card
+                      name={ele.name}
+                      img={
+                        ele.img ? (
+                          ele.img
+                        ) : (
+                          <img
+                            src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
+                            alt="pokemon"
+                          />
+                        )
+                      }
+                      type={ele.type}
+                    />
+                  </Link>
+                </div>
+              );
+            })
+          : setTimeout(() => {
+              console.log("entre al setTimeOut pa");
+              if (pokemonsActuales.length) {
+                <Error404 />;
+              }
+            }, 1000)}
+
+        <div className={styles.paginadoHome}>
+          <Paginado
+            pokemonsPorPagina={pokemonsPorPagina}
+            allPokemons={allPokemons.length}
+            paginado={paginado}
+            paginaActual={paginaActual}
+          />
         </div>
       </div>
-
-      <div className={styles.parentFiltros}>
-        <div className={styles.divTipos}>
-          <label className={styles.fontFiltros}>Tipo de pokemon: </label>
-
-          <select onChange={(e) => handlerFilterByTypes(e)}>
-            <option value="all">todos</option>
-            {allTypes?.map((type) => (
-              <option key={type.id} value={type.name}>
-                {type.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={styles.divOrdenAZ}>
-          <label className={styles.fontFiltros}>Orden alfabetico: </label>
-          <select
-            className={styles.selectOrderAz}
-            onChange={(e) => handleSort(e)}
-          >
-            {/* <option value="pokedex">pokedex</option> */}
-            <option value="asc">a-z</option>
-            <option value="dsc">z-a</option>
-          </select>
-        </div>
-
-        <div className={styles.divCreacion}>
-          <label className={styles.fontFiltros}>Tipo de creacion: </label>
-          <select onChange={(e) => handlerFilterByCreated(e)}>
-            <option value="all">todos</option>
-            <option value="existing">existente</option>
-            <option value="created">creado</option>
-          </select>
-        </div>
-        <div className={styles.divOrdenAtaque}>
-          <label className={styles.fontFiltros}>Tipo de fuerza: </label>
-          <select onChange={(e) => handlerFilterByStrength(e)}>
-            <option value="default">por defecto</option>
-            <option value="stronger">fuerte</option>
-            <option value="weaker">debil</option>
-            <option value="5 stronger">5 MAS FUERTES</option>
-          </select>
-        </div>
-      </div>
-
-      {!loading ? (
-        allPokemons.length ? (
-          pokemonsActuales.map((ele) => {
-            return (
-              <div key={ele.id}>
-                <Link to={`/pokemons/${ele.id}`}>
-                  <Card
-                    name={ele.name}
-                    img={
-                      ele.img ? (
-                        ele.img
-                      ) : (
-                        <img
-                          src="https://camo.githubusercontent.com/5d1fe59c3f0e4cfb5480bb8d8b1eb3ba58906acef846904fde8afcc5f773adbb/68747470733a2f2f692e696d6775722e636f6d2f583962314b75362e706e67"
-                          alt="pokemon"
-                        />
-                      )
-                    }
-                    type={ele.type}
-                  />
-                </Link>
-              </div>
-            );
-          })
-        ) : (
-          <Loading />
-        )
-      ) : (
-        <Loading />
-      )}
-      <div className={styles.paginadoHome}>
-        <Paginado
-          pokemonsPorPagina={pokemonsPorPagina}
-          allPokemons={allPokemons.length}
-          paginado={paginado}
-          paginaActual={paginaActual}
-        />
-      </div>
-    </div>
+    ) : (
+      <Error404 />
+    )
+  ) : (
+    <Loading />
   );
 }

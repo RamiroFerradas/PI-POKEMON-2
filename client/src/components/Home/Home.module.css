@@ -10,7 +10,7 @@
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  padding: 20px;
+  padding: 10px;
   background-image: linear-gradient(90deg, #1c1c1c, #6220fb83);
 }
 
@@ -301,7 +301,7 @@ select {
 
 .paginadoHome {
   /* margin-top: 37.7%; */
-  margin: 37.7% 0;
+  margin: 36.5% 0;
   margin-left: 45%;
   width: 50%;
 }
