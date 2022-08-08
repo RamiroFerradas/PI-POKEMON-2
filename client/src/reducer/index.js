@@ -6,7 +6,9 @@ const initialState = {
   search: [],
   loading: true,
   buscarApi: false,
+  // pokemonsFiltrados: [],
   // paginaActual: 1,
+  page: 1,
 };
 
 export default function pokemonReducer(state = initialState, action) {
@@ -18,12 +20,15 @@ export default function pokemonReducer(state = initialState, action) {
         allPokemons: action.payload,
         loading: false,
 
+        page: 1,
+
         // detail: action.payload,
       };
     case "GET_TYPES":
       return {
         ...state,
         typesList: action.payload,
+        page: 1,
 
         // loading: false,
       };
@@ -37,6 +42,7 @@ export default function pokemonReducer(state = initialState, action) {
         ...state,
         pokemons: createdFilter,
         loading: false,
+        page: 1,
       };
 
     case "FILTER_BY_TYPES":
@@ -61,6 +67,7 @@ export default function pokemonReducer(state = initialState, action) {
           }
         }),
         loading: false,
+        page: 1,
       };
     case "ORDER_BY_NAME":
       let arrayOrdenamiento =
@@ -87,6 +94,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: arrayOrdenamiento,
+        page: 1,
       };
 
     case "FILTER_BY_STRENGTH":
@@ -95,6 +103,7 @@ export default function pokemonReducer(state = initialState, action) {
         return {
           ...state,
           pokemons: state.allPokemons,
+          page: 1,
         };
       }
       if (action.payload === "stronger") {
@@ -137,6 +146,7 @@ export default function pokemonReducer(state = initialState, action) {
 
         return {
           ...state,
+          page: 1,
           pokemons: a,
         };
       }
@@ -161,6 +171,7 @@ export default function pokemonReducer(state = initialState, action) {
         // pokemons: state.allPokemons,
         // pokemons: [],
         detail: {},
+        page: 1,
         loading: true,
       };
 
@@ -170,6 +181,7 @@ export default function pokemonReducer(state = initialState, action) {
         // pokemons: state.allPokemons,
         // pokemons: [],
         detail: {},
+        page: 1,
         loading: true,
         pokemons: [],
       };
@@ -178,6 +190,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: state.allPokemons,
+        page: 1,
       };
 
     case "SET_LOADING":
@@ -186,10 +199,12 @@ export default function pokemonReducer(state = initialState, action) {
         return {
           ...state,
           loading: false,
+          page: 1,
         };
       } else {
         return {
           ...state,
+          page: 1,
           loading: true,
         };
       }
@@ -198,6 +213,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
         pokemons: [state.allPokemons],
+        page: 1,
       };
 
     // case "SET_CURRENT_PAGE":
@@ -207,6 +223,11 @@ export default function pokemonReducer(state = initialState, action) {
     //     ...state,
     //     page: action.number,
     //   };
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        page: action.payload,
+      };
 
     case "GET_POKEMON_NAME_GLOBAL":
       const unPoke = state.allPokemons;
@@ -218,12 +239,14 @@ export default function pokemonReducer(state = initialState, action) {
         return {
           ...state,
           buscarApi: true,
+          page: 1,
         };
       }
 
       return {
         ...state,
         pokemons: filter,
+        page: 1,
         loading: false,
       };
     case "GET_NAME_POKEMONS":
@@ -234,18 +257,21 @@ export default function pokemonReducer(state = initialState, action) {
           pokemon: error,
           loading: false,
           flag: false,
+          page: 1,
         };
       }
       return {
         ...state,
         pokemons: action.payload,
         loading: false,
+        page: 1,
       };
 
     case "RECARGAR_POKEMONS":
       return {
         ...state,
         pokemons: state.allPokemons,
+        page: 1,
       };
 
     default:

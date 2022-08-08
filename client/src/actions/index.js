@@ -132,15 +132,18 @@ export function back() {
   };
 }
 
-// export function setCurrentPage(number) {
-//   console.log(number, "holaaa");
+// export function setCurrentPage(payload) {
+//   console.log(payload, "holaaa");
 //   return function (dispatch) {
 //     return dispatch({
 //       type: "SET_CURRENT_PAGE",
-//       payload: number,
+//       payload: payload,
 //     });
 //   };
 // }
+export const setCurrentPage = (payload) => {
+  return { type: "SET_CURRENT_PAGE", payload };
+};
 
 export function getNamePokemonsGlobal(name) {
   return function (dispatch) {

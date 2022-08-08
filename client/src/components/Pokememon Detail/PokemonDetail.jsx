@@ -55,9 +55,9 @@ export default function DetailsPokemonPage(props) {
                 alt={pokemonInfo.name}
                 className={styles.imgDetail}
               />
+              <h1 className={styles.pokemonName}>{pokemonInfo.name}</h1>
               <div className={styles.detalles}>
-                <h1 className={styles.fontDetail}>{pokemonInfo.name}</h1>
-                <p className={styles.fontDetail}>ID: {pokemonInfo.id}</p>
+                <p className={styles.fontDetail}>ID: #{pokemonInfo.id}</p>
                 <div>
                   <p className={styles.fontDetail}>HP: {pokemonInfo.hp}</p>
                   <p className={styles.fontDetail}>

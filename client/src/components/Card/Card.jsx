@@ -15,7 +15,7 @@ export default function Card({ name, img, type }) {
     <div className={styles.cardHome}>
       <div>
         <h1 className={styles.detallesCard}>{name}</h1>
-        <img className={styles.imgCard} src={img} alt="pokemon" />
+        <img className={styles.imgCard} src={img} alt={name} />
       </div>
       <div>
         <h4 className={styles.detallesCard}>Type: {type.join(", ")}</h4>
