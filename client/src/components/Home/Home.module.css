@@ -5,17 +5,19 @@
 
 .parent {
   /* background-color: #000000; */
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* grid-template-columns: repeat(20, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-row-gap: 0px; */
   padding: 10px;
   background-image: linear-gradient(90deg, #1c1c1c, #6220fb83);
 }
 
 .divTitulo {
-  grid-area: 1 / 1 / 2 / 2;
+  /* grid-area: 1 / 2 / 2 / 3; */
   /* text-decoration: none; */
 }
 .titulo {
@@ -33,13 +35,17 @@
   /* font-family: ; */
 }
 .divCrear {
-  grid-area: 1 / 8 / 2 / 9;
+  /* grid-area: 1 / 16 / 2 / 17; */
+  margin-left: 40rem;
 }
 .divCargar {
-  grid-area: 1 / 9 / 2 / 10;
+  /* grid-area: 1 / 18 / 2 / 19; */
+  /* margin-left: 10rem; */
+  margin-left: 10px;
+  padding-left: 10px;
 }
 .divSearchBar {
-  grid-area: 1 / 10 / 2 / 11;
+  /* grid-area: 1 / 20 / 2 / 21; */
 }
 
 /* From uiverse.io by @namecho */
@@ -83,13 +89,16 @@
   -webkit-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 15px -3px rgba(0, 0, 0, 0.75);
+  margin-left: 50rem;
 }
 
 .buttonCrear:hover {
   cursor: pointer;
   transition: all 0.3s ease-in;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  /* padding-right: 30px;
+  padding-left: 30px; */
 }
 .buttonCarga {
   cursor: pointer;
@@ -133,8 +142,8 @@
 .buttonCarga:hover {
   cursor: pointer;
   transition: all 0.3s ease-in;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 3rem;
+  padding-left: 3rem;
 }
 
 /*OTRO BOTON */

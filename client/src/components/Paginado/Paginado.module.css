@@ -42,7 +42,7 @@ body {
 }
 
 .buttonPaginado2 {
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
   padding: 3px 15px;
   margin: 0px 10px 10px 0px;

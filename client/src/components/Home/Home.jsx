@@ -86,27 +86,27 @@ export default function Home() {
     pokemonsActuales.length ? (
       <div className={styles.header}>
         <div className={styles.parent}>
-          <div className={styles.divTitulo}>
-            <h1 className={styles.titulo}>POKEAPP</h1>
-          </div>
-          <div className={styles.divCrear}>
-            <Link to="/agregar">
-              <button className={styles.buttonCrear}>CREAR POKEMON</button>
-            </Link>
-          </div>
-          <div className={styles.divCargar}>
-            <button
-              className={styles.buttonCarga}
-              onClick={(e) => {
-                handleClick(e);
-              }}
-            >
-              recargar pokemons
-            </button>
-          </div>
-          <div className={styles.divSearchBar}>
-            <SearchBar setPaginaActual={setPaginaActual} />
-          </div>
+          {/* <div className={styles.divTitulo}> */}
+          <h1 className={styles.titulo}>POKEAPP</h1>
+          {/* </div> */}
+          {/* <div className={styles.divCrear}> */}
+          <Link to="/agregar">
+            <button className={styles.buttonCrear}>CREAR POKEMON</button>
+          </Link>
+          {/* </div> */}
+          {/* <div className={styles.divCargar}> */}
+          <button
+            className={styles.buttonCarga}
+            onClick={(e) => {
+              handleClick(e);
+            }}
+          >
+            recargar pokemons
+          </button>
+          {/* </div> */}
+          {/* <div className={styles.divSearchBar}> */}
+          <SearchBar setPaginaActual={setPaginaActual} />
+          {/* </div> */}
         </div>
 
         <div className={styles.parentFiltros}>
