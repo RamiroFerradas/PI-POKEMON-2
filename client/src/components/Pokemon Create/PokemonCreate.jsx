@@ -122,8 +122,7 @@ export function PokemonCreate() {
         (pokemon) => pokemon.name.toUpperCase() === input.name.toUpperCase()
       )
     )
-      errors.name =
-        "Ya existe un pokemon con ese nombre, prueba con escoger otro";
+      errors.name = "Ya existe un pokemon con ese nombre, escoge otro!";
     if (!input.name)
       errors.name = "Tu poke necesita un nombre, escoge el mejor";
     if (/[1-9]/.test(input.name))

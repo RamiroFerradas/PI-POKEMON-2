@@ -36,11 +36,11 @@ export default function DetailsPokemonPage(props) {
   };
 
   let handleDelete = () => {
-    navigate("/home");
+    dispatch(deletePokemon(id));
     alert("¡Pokémon eliminado!");
+    navigate("/home");
     dispatch(cleanCache());
     // dispatch(cleanCacheAll());
-    dispatch(deletePokemon(id));
   };
   // console.log(pokemonInfo);
 

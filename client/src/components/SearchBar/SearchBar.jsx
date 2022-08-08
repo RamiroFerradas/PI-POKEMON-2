@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getNamePokemonsGlobal, getNamePokemons } from "../../actions";
 import { setLoading } from "../../actions";
+import Loading from "../Loading/Loading";
 // import { useNavigate } from "react-router-dom";
 import styles from "../SearchBar/SearchBar.module.css";
 
@@ -13,6 +14,7 @@ export default function SearchBar({ setPaginaActual }) {
   const flag = useSelector((state) => state.buscarApi);
 
   const allPokemons = useSelector((state) => state.pokemons);
+  const loading = useSelector((state) => state.loading);
 
   function handleInputChange(e) {
     e.preventDefault();
@@ -23,10 +25,13 @@ export default function SearchBar({ setPaginaActual }) {
     e.preventDefault();
     dispatch(setLoading());
 
-    dispatch(getNamePokemonsGlobal(name));
-    if (!flag) dispatch(getNamePokemons(name));
+    // if (!flag) {
+    if (!allPokemons.length) dispatch(setLoading());
+    dispatch(getNamePokemons(name));
 
-    setPaginaActual(() => 1);
+    // }
+    dispatch(setLoading());
+    dispatch(getNamePokemonsGlobal(name));
     e.target.reset();
   }
 
