@@ -41,6 +41,7 @@ async function getPokemon() {
   const promesa = await Promise.all(
     data.results.map((ele) => axios.get(ele.url))
   );
+  console.log(data);
   //limpio la info que me trae axios y obtengo solo la data:
   const infoLimpia = promesa.map((ele) => ele.data);
   const arrayResultado = [];
@@ -61,10 +62,6 @@ async function getOnePokemonId(id) {
         attributes: ["name"],
       },
     });
-
-    // const mapeados = data.map((ele) => {
-    //   return
-    // })
 
     console.log(data, "ID DE POKEMON CREADO");
     let arr = [];

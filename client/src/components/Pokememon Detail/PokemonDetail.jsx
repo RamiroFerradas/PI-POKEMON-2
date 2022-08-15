@@ -99,7 +99,7 @@ export default function DetailsPokemonPage(props) {
                 onClick={(e) => cleanAndBack(e)}
                 className={styles.buttonBack}
               >
-                {"<-"} VOLVER
+                {"<-"} BACK
               </button>
             </div>
           </div>

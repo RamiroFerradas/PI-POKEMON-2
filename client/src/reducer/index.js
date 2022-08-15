@@ -242,13 +242,13 @@ export default function pokemonReducer(state = initialState, action) {
           page: 1,
         };
       }
-
       return {
         ...state,
         pokemons: filter,
         page: 1,
         loading: false,
       };
+
     case "GET_NAME_POKEMONS":
       if (action.payload.msj) {
         let error = { error: "No se encontró el pokémon" };
