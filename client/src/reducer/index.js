@@ -159,6 +159,7 @@ export default function pokemonReducer(state = initialState, action) {
       return {
         ...state,
       };
+
     case "GET_POKEMONS_DETAILS":
       return {
         ...state,
