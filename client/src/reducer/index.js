@@ -69,6 +69,7 @@ export default function pokemonReducer(state = initialState, action) {
         loading: false,
         page: 1,
       };
+
     case "ORDER_BY_NAME":
       let arrayOrdenamiento =
         action.payload === "asc"

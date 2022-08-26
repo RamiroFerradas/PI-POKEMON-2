@@ -177,6 +177,7 @@ export default function Home() {
             paginado={paginado}
             paginaActual={paginaActual}
           />
+          D
         </div>
       </div>
     ) : (
