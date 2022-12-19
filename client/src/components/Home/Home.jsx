@@ -23,6 +23,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.typesList);
   const allPokemons = useSelector((state) => state.pokemons);
+
   const [order, setOrder] = useState("");
 
   //paginado
