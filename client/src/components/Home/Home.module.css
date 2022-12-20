@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Pokemon";
+  src: url("../../Font/Pokemon-Solid-Normal/pokemonhollownormal.ttf")
+    format("woff2");
+}
+
 .header {
   /* background-image: url(../../assets/img4/Wallpaper-Pokemon-Wallpaper-Pokemon-Minimalism-Squirtle44.jpg); */
   /* text-align: center; */
@@ -43,15 +49,9 @@
   font-size: 2rem;
   letter-spacing: 1rem;
   text-decoration: none;
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: "Pokemon", sans-serif;
   color: #f8f800ac;
-  /* font-size: ; */
-  /* height: 10rem; */
-  /* text-transform: uppercase; */
-  /* font-style: normal; */
-  /* font-weight: 400; */
-  /* border: solid 1px #d2d2d4ac; */
-  /* font-family: ; */
+  margin-left: 20px;
 }
 .divCrear {
   /* grid-area: 1 / 16 / 2 / 17; */
