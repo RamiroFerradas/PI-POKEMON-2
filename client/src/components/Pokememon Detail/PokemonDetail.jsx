@@ -42,7 +42,6 @@ export default function DetailsPokemonPage(props) {
     dispatch(cleanCache());
     // dispatch(cleanCacheAll());
   };
-  // console.log(pokemonInfo);
 
   return pokemon ? (
     pokemonInfo.img ? (

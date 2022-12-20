@@ -27,7 +27,6 @@ async function getTipos() {
     Api.forEach((ele) => {
       // console.log(tiposAPI);
       let idA = parseInt(ele.url.split("/")[6]);
-      console.log(ele);
 
       Tipo.findOrCreate({
         where: {

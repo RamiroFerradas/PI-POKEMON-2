@@ -78,7 +78,6 @@ export default function Home() {
   const handleSort = (e) => {
     e.preventDefault(e);
     dispatch(orderByName(e.target.value));
-    // console.log(e.target);
     setPaginaActual(1);
     setOrder(`Ordenado${e.target.value}`);
   };
@@ -90,24 +89,29 @@ export default function Home() {
           {/* <div className={styles.divTitulo}> */}
           <h1 className={styles.titulo}>POKEAPP</h1>
           {/* </div> */}
-          {/* <div className={styles.divCrear}> */}
-          <Link to="/agregar">
-            <button className={styles.buttonCrear}>CREAR POKEMON</button>
-          </Link>
-          {/* </div> */}
-          {/* <div className={styles.divCargar}> */}
-          <button
-            className={styles.buttonCarga}
-            onClick={(e) => {
-              handleClick(e);
-            }}
-          >
-            recargar pokemons
-          </button>
-          {/* </div> */}
-          {/* <div className={styles.divSearchBar}> */}
-          <SearchBar setPaginaActual={setPaginaActual} />
-          {/* </div> */}
+          <div className={styles.divCrear}>
+            <div className={styles.divButtonCreate}>
+              <Link to="/agregar">
+                <button className={styles.buttonCrear}>
+                  <span>CREAR POKEMON</span>
+                </button>
+              </Link>
+            </div>
+
+            {/* </div> */}
+            <div className={styles.divButtonRecarga}>
+              <button
+                className={styles.buttonCarga}
+                onClick={(e) => {
+                  handleClick(e);
+                }}
+              >
+                <span>recargar pokemons</span>
+              </button>
+            </div>
+            {/* <div className={styles.divSearchBar}> */}
+            <SearchBar setPaginaActual={setPaginaActual} />
+          </div>
         </div>
 
         <div className={styles.parentFiltros}>
@@ -153,23 +157,24 @@ export default function Home() {
             </select>
           </div>
         </div>
-
-        {allPokemons.length
-          ? pokemonsActuales.map((ele) => {
-              return (
-                <div key={ele.id}>
-                  <Link to={`/pokemons/${ele.id}`}>
-                    <Card name={ele.name} img={ele.img} type={ele.type} />
-                  </Link>
-                </div>
-              );
-            })
-          : setTimeout(() => {
-              console.log("entre al setTimeOut pa");
-              if (pokemonsActuales.length) {
-                <Error404 />;
-              }
-            }, 1000)}
+        <div className={styles.container}>
+          {" "}
+          {allPokemons.length
+            ? pokemonsActuales.map((ele) => {
+                return (
+                  <div key={ele.id}>
+                    <Link to={`/pokemons/${ele.id}`}>
+                      <Card name={ele.name} img={ele.img} type={ele.type} />
+                    </Link>
+                  </div>
+                );
+              })
+            : setTimeout(() => {
+                if (pokemonsActuales.length) {
+                  <Error404 />;
+                }
+              }, 1000)}
+        </div>
 
         <div className={styles.paginadoHome}>
           <Paginado

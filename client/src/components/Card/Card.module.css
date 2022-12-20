@@ -1,6 +1,6 @@
 .cardHome {
-  width: 14.4rem;
-  height: 17rem;
+  width: 10vw;
+  height: 28vh;
   border-radius: 30px;
   background: #212121;
   box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
@@ -14,9 +14,9 @@
   float: left;
   text-align: center;
   /* width: 20rem; */
-  margin-left: 40px;
+  /* margin-left: 40px;
   margin-top: 40px;
-  margin-right: 20px;
+  margin-right: 20px; */
   /* padding-right: px; */
   padding-bottom: 30px;
   -webkit-box-shadow: 11px 10px 29px -3px rgba(0, 0, 0, 0.75);
@@ -32,8 +32,7 @@
 
 .imgCard {
   transition: 5s;
-  width: 14rem;
-  height: 11rem;
+  height: 20vh;
   /* margin-right: 70px; */
 }
 .imgCard:hover {

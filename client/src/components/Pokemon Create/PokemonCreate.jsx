@@ -46,7 +46,6 @@ export function PokemonCreate() {
         [e.target.name]: e.target.value,
       })
     );
-    console.log(input);
   };
 
   const handlerFirstSelect = (e) => {
@@ -94,7 +93,6 @@ export function PokemonCreate() {
 
   const handlerCreatePokemon = (e) => {
     e.preventDefault();
-    // console.log(input);
     dispatch(postPokemon({ ...input, name: input.name.toLowerCase() }));
     alert("Tu pokemon ha sido creado exitosamente");
     setInput({

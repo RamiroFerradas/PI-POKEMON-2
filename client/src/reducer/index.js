@@ -219,7 +219,6 @@ export default function pokemonReducer(state = initialState, action) {
       };
 
     // case "SET_CURRENT_PAGE":
-    //   console.log(action.type, action.payload);
 
     //   return {
     //     ...state,
@@ -236,7 +235,6 @@ export default function pokemonReducer(state = initialState, action) {
       const filter = unPoke.filter((ele) =>
         ele.name.toLowerCase().includes(action.payload.toLowerCase())
       );
-      // console.log(unPoke);
       if (filter === 0) {
         return {
           ...state,
