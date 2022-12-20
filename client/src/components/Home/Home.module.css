@@ -6,6 +6,7 @@
   align-items: center;
   /* height: 100vh; */
   flex-direction: column;
+  overflow: hidden;
 }
 .container {
   display: grid;
@@ -118,7 +119,7 @@
 } */
 .divButtonRecarga,
 .divButtonCreate {
-  width: 10vw;
+  width: 14vw;
 }
 .buttonCarga {
   cursor: pointer;
